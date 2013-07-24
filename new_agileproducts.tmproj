@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>_posts/2013-07-07-zeitgeisters.md</string>
+	<string>_layouts/default.html</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -49,28 +49,70 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>_includes/head.html</key>
+		<key>_config.yml</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>7</integer>
+				<integer>35</integer>
 				<key>line</key>
-				<integer>16</integer>
+				<integer>3</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>_posts/2013-07-07-zeitgeisters.md</key>
+		<key>_includes/footer.html</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>30</integer>
+				<integer>6</integer>
+				<key>line</key>
+				<integer>11</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>_includes/scripts.html</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>57</integer>
 				<key>line</key>
 				<integer>4</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>_includes/sidebar.html</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>26</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>_layouts/default.html</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>18</integer>
+				<key>line</key>
+				<integer>24</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -85,6 +127,20 @@
 				<integer>227</integer>
 				<key>line</key>
 				<integer>4</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>_posts/2013-07-23-moving_to_jekyll.md</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>488</integer>
+				<key>line</key>
+				<integer>9</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -151,16 +207,16 @@
 	<key>openDocuments</key>
 	<array>
 		<string>index.html</string>
-		<string>Gemfile.lock</string>
-		<string>assets/css/basic.css</string>
-		<string>assets/css/enhanced.css</string>
-		<string>Gemfile</string>
-		<string>_posts/2013-07-12-fixing-the-ebook-market.md</string>
-		<string>_posts/2013-07-07-zeitgeisters.md</string>
+		<string>_includes/footer.html</string>
+		<string>_includes/sidebar.html</string>
+		<string>_layouts/default.html</string>
+		<string>_includes/scripts.html</string>
+		<string>_posts/2013-07-23-moving_to_jekyll.md</string>
+		<string>_config.yml</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{65, 0}, {1057, 824}}</string>
+	<string>{{55, 54}, {1057, 824}}</string>
 </dict>
 </plist>
