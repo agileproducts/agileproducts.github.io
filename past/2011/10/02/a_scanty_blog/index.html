@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+<head>
+  <title>AgileProducts | A Scanty blog</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta property="description" content="A blog about product development, technology, and etcetera" />  
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" type="text/css" href="/assets/css/basic.css" media="screen, handheld" />
+  <link rel="stylesheet" type="text/css" href="/assets/css/enhanced.css" media="screen and (min-width: 640px)" />
+  <!--[if (lt IE 9)&(!IEMobile)]>
+  <link rel="stylesheet" type="text/css" href="enhanced.css" />
+  <![endif]-->
+  
+  <meta property="og:description" content="A blog about product development, technology, and etcetera" />
+  <meta property="og:image" content="http://blog.agileproducts.com/assets/images/fblogo.png" />
+  
+  <link rel="shortcut icon" href="/favicon.png" />
+  
+</head>
+<body>
+  <div id="page"> 
+	
+	<div id="header">
+  <h1 id="logo"><a href="/">A<span class="a">GILE</span>P<span class="a">RODUCTS</span></a></h1>
+  <h2 id="strapline">Products, Technology, Etcetera</h2>
+</div>   
+    
+    <div id="content">
+	
+      <div id="main">
+	   <div class="post">
+	    <h2>A Scanty blog</h2>
+	    <p class="meta">02 October 2011</p>
+        <p>On previous occasions when I’ve played around with blogs I’ve generally used Wordpress, but of late I’ve become a bit tired of it. I can never seem to find a theme I like and waste ages trying to create my own or to reverse engineer some unintelligible off-the-shelf PHP. Since I’m trying to learn Ruby I thought that perhaps this time I should look for a Ruby blogging platform.</p>
+
+<p>Googling found a few, but the one that attracted me was <a href='https://github.com/adamwiggins/scanty'>Scanty</a> by Adam Wiggins. As he <a href='http://adam.heroku.com/past/2008/11/4/scanty_the_blog_thats_almost_nothing/'>describes it</a> it’s a very, very minimal system - and therefore ideal for a beginner, there’s only a small amount of simple code to pick apart.</p>
+
+<p>The code doesn’t appear to be being maintained and I had a few issues getting it working. First of all I had to fix the <a href='https://github.com/adamwiggins/scanty/pull/4'>compatibility issue</a> with newer version of Sinatra and for a while didn’t realise that I needed to add a Gemfile to get it running on Heroku. Then when I tried to save my first post it chucked an error which seemed to trace back to one of the vendored gems and was to do with parsing or encoding. At that point I was running Ruby 1.8.7 locally, and I decided the only thing for it was to upgrade to 1.9.2 and replace the vendored gems with the latest versions as part of my bundle.</p>
+
+<p>But now here we are, it’s working. Let’s see how we get on.</p>
+        <p class="meta">
+	    
+	      <a href="/past/tags/Ruby">Ruby</a>
+	    
+	      <a href="/past/tags/Scanty_blog">Scanty_blog</a>
+	    
+	    </p>
+	   </div>
+      </div>
+
+     <div id="sidebar">
+
+  <div class="sidebar_section">
+    <div class="sidebar_section_header">
+      <h2>Tags</h2>
+    </div>
+    <div class="sidebar_section_content">
+	  <ul class="taglist">
+	    
+	      <li><a href="/past.html">Products</a><li>
+	    
+	      <li><a href="/past.html">Analysis</a><li>
+	    
+	      <li><a href="/past.html">Ruby</a><li>
+	    
+	      <li><a href="/past.html">Scanty_blog</a><li>
+	    
+	      <li><a href="/past.html">Publishing</a><li>
+	    
+	      <li><a href="/past.html">XML</a><li>
+	    
+	      <li><a href="/past.html">Agile</a><li>
+	    
+	      <li><a href="/past.html">Teams</a><li>
+	    
+	      <li><a href="/past.html">Recruitment</a><li>
+	    
+	      <li><a href="/past.html">Business</a><li>
+	    
+	      <li><a href="/past.html">User-Stories</a><li>
+	    
+	      <li><a href="/past.html">Mobile</a><li>
+	    
+	      <li><a href="/past.html">Design</a><li>
+	    
+	      <li><a href="/past.html">CSS</a><li>
+	    
+	      <li><a href="/past.html">Branding</a><li>
+	    
+	      <li><a href="/past.html">Planning</a><li>
+	    
+	      <li><a href="/past.html">Maths</a><li>
+	    
+	      <li><a href="/past.html">Media</a><li>
+	    
+	  </ul>
+	</div>
+  </div>
+
+  <div class="sidebar_section">
+    <div class="sidebar_section_header">
+      <h2>Archive</h2>
+    </div>
+    <div class="sidebar_section_content">
+	  <a href="/past.html">All blog posts</a>
+	</div>
+  </div>
+
+</div>
+
+
+	
+      <div class="spacer"></div>
+	
+    </div>
+
+	<div id="footer">
+  <h2>About me</h2>
+  <div class="footer_block">I am a London based product development person interested in creating online products using agile methods.</div>
+  <div>
+    <a href="http://twitter.com/#!/stphencornelius" title="Follow me on Twitter" onMousedown="_gaq.push(['_trackEvent', 'Links', 'Twitter']);">
+      <img src="/assets/images/twitter.png"/>
+    </a>
+    <a href="https://plus.google.com/116017560330628192192?rel=author" title="Find me on Google +" onMousedown="_gaq.push(['_trackEvent', 'Links', 'Google +']);"><img src="/assets/images/gPlus_red.png" width="24" height="24"/></a> 
+    <a href="http://www.linkedin.com/profile/view?id=2732644" title="Look me up on LinkedIn" onMousedown="_gaq.push(['_trackEvent', 'Links', 'LinkedIn']);"><img src="/assets/images/linkedin24.png"/></a> 
+    <!--<a href="/feed"><img src="/assets/images/feed24.png" title="Atom feed" onMousedown="_gaq.push(['_trackEvent', 'Links', 'RSS']);"/></a>-->
+  </div>
+</div>
+    
+  
+  </div>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!doctype html>
+<html>
+<head>
+  <title>AgileProducts | The Google Analytics API and Ruby</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta property="description" content="A blog about product development, technology, and etcetera" />  
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" type="text/css" href="/assets/css/basic.css" media="screen, handheld" />
+  <link rel="stylesheet" type="text/css" href="/assets/css/enhanced.css" media="screen and (min-width: 640px)" />
+  <!--[if (lt IE 9)&(!IEMobile)]>
+  <link rel="stylesheet" type="text/css" href="enhanced.css" />
+  <![endif]-->
+  
+  <meta property="og:description" content="A blog about product development, technology, and etcetera" />
+  <meta property="og:image" content="http://blog.agileproducts.com/assets/images/fblogo.png" />
+  
+  <link rel="shortcut icon" href="/favicon.png" />
+  
+</head>
+<body>
+  <div id="page"> 
+	
+	<div id="header">
+  <h1 id="logo"><a href="/">A<span class="a">GILE</span>P<span class="a">RODUCTS</span></a></h1>
+  <h2 id="strapline">Products, Technology, Etcetera</h2>
+</div>   
+    
+    <div id="content">
+	
+      <div id="main">
+	   <div class="post">
+	    <h2>The Google Analytics API and Ruby</h2>
+	    <p class="meta">08 October 2011</p>
+        <p><em>Getting data from the Google Analytics API using the Garb gem</em></p>
+
+<p>We wanted to get a list of the top 50,000 search terms that resulted in a referral from Google to the main site for the company where I’m currently working. Trying to obtain them via the regular browser interface was painful, so we looked at using the API instead.</p>
+
+<p>I looked for a bit of Ruby to help, and sure enough I came across <a href='https://github.com/vigetlabs/garb'>Garb</a>, an handy little gem which makes talking to Google very easy indeed.</p>
+
+<p>Here’s what my script looked like:</p>
+<div class='highlight'><pre><code class='ruby'><span class='c1'>#!/usr/bin/env ruby</span>
+<span class='c1'># encoding: UTF-8</span>
+
+<span class='nb'>require</span> <span class='s1'>&#39;garb&#39;</span>
+
+<span class='c1'>#Set up the connection</span>
+<span class='ss'>Garb</span><span class='p'>:</span><span class='ss'>:Session</span><span class='o'>.</span><span class='n'>login</span><span class='p'>(</span><span class='s1'>&#39;mygoogleusername&#39;</span><span class='p'>,</span> <span class='s1'>&#39;mypassword&#39;</span><span class='p'>,</span> <span class='ss'>:account_type</span> <span class='o'>=&gt;</span> <span class='s2'>&quot;GOOGLE&quot;</span><span class='p'>)</span>
+
+<span class='n'>profile</span> <span class='o'>=</span> <span class='ss'>Garb</span><span class='p'>:</span><span class='ss'>:Management</span><span class='o'>::</span><span class='no'>Profile</span><span class='o'>.</span><span class='n'>all</span><span class='o'>.</span><span class='n'>detect</span> <span class='p'>{</span>
+  <span class='o'>|</span><span class='n'>profiles</span><span class='o'>|</span> <span class='n'>profiles</span><span class='o'>.</span><span class='n'>web_property_id</span> <span class='o'>==</span> <span class='s1'>&#39;UA-myid&#39;</span><span class='p'>}</span>
+
+<span class='c1'>#Define which statistics are wanted</span>
+<span class='k'>class</span> <span class='nc'>GoogleSearches</span>
+  <span class='kp'>extend</span> <span class='ss'>Garb</span><span class='p'>:</span><span class='ss'>:Model</span>
+  <span class='n'>metrics</span> <span class='ss'>:visits</span>
+  <span class='n'>dimensions</span> <span class='ss'>:keyword</span>
+<span class='k'>end</span>
+
+<span class='c1'>#You can only fetch 10,000 results at a time from the API</span>
+<span class='c1'>#So I had to break this into five pieces</span>
+<span class='p'>(</span><span class='mi'>0</span><span class='o'>.</span><span class='n'>.</span><span class='mi'>4</span><span class='p'>)</span><span class='o'>.</span><span class='n'>each</span> <span class='k'>do</span> <span class='o'>|</span><span class='n'>i</span><span class='o'>|</span>
+  <span class='n'>iterator</span> <span class='o'>=</span> <span class='n'>i</span><span class='o'>.</span><span class='n'>to_s</span>
+  
+  <span class='n'>resultset</span> <span class='o'>=</span> <span class='no'>GoogleSearches</span><span class='o'>.</span><span class='n'>results</span><span class='p'>(</span>
+    <span class='n'>profile</span><span class='p'>,</span> 
+    <span class='ss'>:limit</span> <span class='o'>=&gt;</span> <span class='mi'>10000</span><span class='p'>,</span>
+    <span class='ss'>:offset</span> <span class='o'>=&gt;</span> <span class='p'>(</span><span class='n'>i</span><span class='o'>*</span><span class='mi'>10000</span><span class='p'>)</span><span class='o'>+</span><span class='mi'>1</span><span class='p'>,</span>
+    <span class='ss'>:start_date</span> <span class='o'>=&gt;</span>  <span class='no'>Date</span><span class='o'>.</span><span class='n'>today</span> <span class='o'>-</span> <span class='mi'>180</span><span class='p'>,</span>
+    <span class='ss'>:end_date</span> <span class='o'>=&gt;</span> <span class='no'>Date</span><span class='o'>.</span><span class='n'>today</span><span class='p'>,</span>
+    <span class='ss'>:filters</span> <span class='o'>=&gt;</span> <span class='p'>{</span><span class='ss'>:source</span><span class='o'>.</span><span class='n'>contains</span> <span class='o'>=&gt;</span> <span class='s1'>&#39;google&#39;</span><span class='p'>},</span>
+    <span class='ss'>:sort</span> <span class='o'>=&gt;</span> <span class='ss'>:visits</span><span class='o'>.</span><span class='n'>desc</span>
+  <span class='p'>)</span>
+
+  <span class='c1'>#Write the results in a csv file, </span>
+  <span class='c1'>#stripping out any commas in the search terms themselves</span>
+  <span class='nb'>open</span><span class='p'>(</span><span class='s1'>&#39;googleterms&#39;</span><span class='o'>+</span><span class='n'>iterator</span><span class='o'>+</span><span class='s1'>&#39;.csv&#39;</span><span class='p'>,</span> <span class='s1'>&#39;w:UTF-8&#39;</span><span class='p'>)</span> <span class='k'>do</span> <span class='o'>|</span><span class='n'>f</span><span class='o'>|</span>
+    <span class='n'>resultset</span><span class='o'>.</span><span class='n'>each</span> <span class='k'>do</span> <span class='o'>|</span><span class='n'>row</span><span class='o'>|</span>
+      <span class='n'>f</span><span class='o'>.</span><span class='n'>puts</span> <span class='n'>row</span><span class='o'>.</span><span class='n'>keyword</span><span class='o'>.</span><span class='n'>gsub</span><span class='p'>(</span><span class='sr'>/,/u</span><span class='p'>,</span><span class='s1'>&#39; &#39;</span><span class='p'>)</span> <span class='o'>+</span> <span class='s2'>&quot;,&quot;</span> <span class='o'>+</span> <span class='n'>row</span><span class='o'>.</span><span class='n'>visits</span>
+    <span class='k'>end</span>
+
+  <span class='k'>end</span>
+<span class='k'>end</span>
+</code></pre></div>
+<p>The main thing I had to watch for was character encoding, in the case it was important to preserve all the UTF8 encodings in the search terms, many of which weren’t in English. My Windows 7 machine at work gave me lots of trouble here, to no great surprise it wasn’t an issue when I tried using it on my Mac at home.</p>
+        <p class="meta">
+	    
+	      <a href="/past/tags/Ruby">Ruby</a>
+	    
+	      <a href="/past/tags/Publishing">Publishing</a>
+	    
+	    </p>
+	   </div>
+      </div>
+
+     <div id="sidebar">
+
+  <div class="sidebar_section">
+    <div class="sidebar_section_header">
+      <h2>Tags</h2>
+    </div>
+    <div class="sidebar_section_content">
+	  <ul class="taglist">
+	    
+	      <li><a href="/past.html">Products</a><li>
+	    
+	      <li><a href="/past.html">Analysis</a><li>
+	    
+	      <li><a href="/past.html">Ruby</a><li>
+	    
+	      <li><a href="/past.html">Scanty_blog</a><li>
+	    
+	      <li><a href="/past.html">Publishing</a><li>
+	    
+	      <li><a href="/past.html">XML</a><li>
+	    
+	      <li><a href="/past.html">Agile</a><li>
+	    
+	      <li><a href="/past.html">Teams</a><li>
+	    
+	      <li><a href="/past.html">Recruitment</a><li>
+	    
+	      <li><a href="/past.html">Business</a><li>
+	    
+	      <li><a href="/past.html">User-Stories</a><li>
+	    
+	      <li><a href="/past.html">Mobile</a><li>
+	    
+	      <li><a href="/past.html">Design</a><li>
+	    
+	      <li><a href="/past.html">CSS</a><li>
+	    
+	      <li><a href="/past.html">Branding</a><li>
+	    
+	      <li><a href="/past.html">Planning</a><li>
+	    
+	      <li><a href="/past.html">Maths</a><li>
+	    
+	      <li><a href="/past.html">Media</a><li>
+	    
+	  </ul>
+	</div>
+  </div>
+
+  <div class="sidebar_section">
+    <div class="sidebar_section_header">
+      <h2>Archive</h2>
+    </div>
+    <div class="sidebar_section_content">
+	  <a href="/past.html">All blog posts</a>
+	</div>
+  </div>
+
+</div>
+
+
+	
+      <div class="spacer"></div>
+	
+    </div>
+
+	<div id="footer">
+  <h2>About me</h2>
+  <div class="footer_block">I am a London based product development person interested in creating online products using agile methods.</div>
+  <div>
+    <a href="http://twitter.com/#!/stphencornelius" title="Follow me on Twitter" onMousedown="_gaq.push(['_trackEvent', 'Links', 'Twitter']);">
+      <img src="/assets/images/twitter.png"/>
+    </a>
+    <a href="https://plus.google.com/116017560330628192192?rel=author" title="Find me on Google +" onMousedown="_gaq.push(['_trackEvent', 'Links', 'Google +']);"><img src="/assets/images/gPlus_red.png" width="24" height="24"/></a> 
+    <a href="http://www.linkedin.com/profile/view?id=2732644" title="Look me up on LinkedIn" onMousedown="_gaq.push(['_trackEvent', 'Links', 'LinkedIn']);"><img src="/assets/images/linkedin24.png"/></a> 
+    <!--<a href="/feed"><img src="/assets/images/feed24.png" title="Atom feed" onMousedown="_gaq.push(['_trackEvent', 'Links', 'RSS']);"/></a>-->
+  </div>
+</div>
+    
+  
+  </div>
+</body>
+</html>

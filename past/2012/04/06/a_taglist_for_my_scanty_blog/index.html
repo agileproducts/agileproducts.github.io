@@ -1,0 +1,170 @@
+<!doctype html>
+<html>
+<head>
+  <title>AgileProducts | A tag-list for my Scanty blog</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta property="description" content="A blog about product development, technology, and etcetera" />  
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" type="text/css" href="/assets/css/basic.css" media="screen, handheld" />
+  <link rel="stylesheet" type="text/css" href="/assets/css/enhanced.css" media="screen and (min-width: 640px)" />
+  <!--[if (lt IE 9)&(!IEMobile)]>
+  <link rel="stylesheet" type="text/css" href="enhanced.css" />
+  <![endif]-->
+  
+  <meta property="og:description" content="A blog about product development, technology, and etcetera" />
+  <meta property="og:image" content="http://blog.agileproducts.com/assets/images/fblogo.png" />
+  
+  <link rel="shortcut icon" href="/favicon.png" />
+  
+</head>
+<body>
+  <div id="page"> 
+	
+	<div id="header">
+  <h1 id="logo"><a href="/">A<span class="a">GILE</span>P<span class="a">RODUCTS</span></a></h1>
+  <h2 id="strapline">Products, Technology, Etcetera</h2>
+</div>   
+    
+    <div id="content">
+	
+      <div id="main">
+	   <div class="post">
+	    <h2>A tag-list for my Scanty blog</h2>
+	    <p class="meta">06 April 2012</p>
+        <p>One feature I’ve been missing from Scanty is a tag-list or cloud - for me that’s always an easy way to see what a blog site is about. But it wasn’t too difficult to make one. I defined a helper method in Sinatra like this:</p>
+<div class='highlight'><pre><code class='ruby'><span class='c1'>#gets all the tags and returns them as uniqued hash with freq count</span>
+
+<span class='k'>def</span> <span class='nf'>get_taglist</span> 
+<span class='c1'>#select tag from posts table and put into an array</span>
+<span class='c1'>#e.g. [&quot;Ruby Analytics&quot;, &quot;Ruby XML&quot;]		</span>
+  <span class='n'>rawtaglist</span> <span class='o'>=</span> <span class='no'>Post</span><span class='o'>.</span><span class='n'>select_map</span><span class='p'>(</span><span class='ss'>:tags</span><span class='p'>)</span>
+		
+  <span class='c1'>#split compound values into new array of discrete tags</span>
+  <span class='c1'>#e.g. [&quot;Ruby&quot;, &quot;Analytics&quot;, &quot;Ruby&quot;, &quot;XML&quot;]</span>
+  <span class='n'>tag_array</span> <span class='o'>=</span> <span class='nb'>Array</span><span class='o'>.</span><span class='n'>new</span>
+  <span class='n'>rawtaglist</span><span class='o'>.</span><span class='n'>each</span> <span class='k'>do</span> <span class='o'>|</span><span class='n'>rawtag</span><span class='o'>|</span>
+    <span class='n'>temparray</span> <span class='o'>=</span> <span class='n'>rawtag</span><span class='o'>.</span><span class='n'>split</span>
+    <span class='n'>temparray</span><span class='o'>.</span><span class='n'>each</span> <span class='k'>do</span> <span class='o'>|</span><span class='n'>i</span><span class='o'>|</span>
+      <span class='n'>tag_array</span> <span class='o'>&lt;&lt;</span> <span class='n'>i</span>
+    <span class='k'>end</span>
+  <span class='k'>end</span>
+		
+  <span class='c1'>#Gather like values together in a hash</span>
+  <span class='c1'>#e.g. [&quot;Ruby&quot; =&gt; [&quot;Ruby, Ruby&quot;], &quot;Analytics&quot; =&gt; [&quot;Analytics&quot;], &quot;XML&quot; =&gt; [&quot;XML&quot;]]</span>
+  <span class='n'>temp_hash</span> <span class='o'>=</span> <span class='n'>tag_array</span><span class='o'>.</span><span class='n'>group_by</span> <span class='p'>{</span><span class='o'>|</span><span class='n'>value</span><span class='o'>|</span> <span class='n'>value</span><span class='p'>}</span>
+		
+  <span class='c1'>#Build a new hash of key=&gt;values_array.length</span>
+  <span class='c1'>#E.g. [&quot;Ruby&quot; =&gt; 2, &quot;Analytics&quot; =&gt; 1, &quot;XML&quot; =&gt; 1]</span>
+  <span class='n'>tag_hash</span> <span class='o'>=</span> <span class='n'>temp_hash</span><span class='o'>.</span><span class='n'>inject</span><span class='p'>({})</span> <span class='k'>do</span> <span class='o'>|</span><span class='n'>result</span><span class='p'>,</span> <span class='n'>element</span><span class='o'>|</span>
+    <span class='n'>result</span><span class='o'>[</span><span class='n'>element</span><span class='o'>.</span><span class='n'>first</span><span class='o'>]</span> <span class='o'>=</span> <span class='n'>element</span><span class='o'>.</span><span class='n'>last</span><span class='o'>.</span><span class='n'>length</span>
+    <span class='n'>result</span>
+  <span class='k'>end</span>
+		
+  <span class='c1'>#return hash sorted by count value</span>
+    <span class='n'>tag_hash</span><span class='o'>.</span><span class='n'>sort_by</span> <span class='p'>{</span><span class='o'>|</span><span class='n'>key</span><span class='p'>,</span><span class='n'>value</span><span class='o'>|</span> <span class='n'>value</span><span class='p'>}</span><span class='o'>.</span><span class='n'>reverse</span>
+<span class='k'>end</span>
+</code></pre></div>
+<p>and then got the taglist in each page route and passed it to the view like this:</p>
+<div class='highlight'><pre><code class='ruby'><span class='n'>get</span> <span class='s1'>&#39;/past&#39;</span> <span class='k'>do</span>
+  <span class='n'>posts</span> <span class='o'>=</span> <span class='no'>Post</span><span class='o'>.</span><span class='n'>reverse_order</span><span class='p'>(</span><span class='ss'>:created_at</span><span class='p'>)</span>
+  <span class='n'>taglist</span> <span class='o'>=</span> <span class='n'>get_taglist</span>
+  <span class='vi'>@title</span> <span class='o'>=</span> <span class='no'>Blog</span><span class='o'>.</span><span class='n'>sitetitle</span> <span class='o'>+</span> <span class='s2'>&quot; | Archive&quot;</span>
+  <span class='n'>erb</span> <span class='ss'>:archive</span><span class='p'>,</span> <span class='ss'>:locals</span> <span class='o'>=&gt;</span> <span class='p'>{</span> <span class='ss'>:posts</span> <span class='o'>=&gt;</span> <span class='n'>posts</span><span class='p'>,</span> 
+	                     <span class='ss'>:taglist</span> <span class='o'>=&gt;</span> <span class='n'>taglist</span><span class='p'>,</span> 
+	                     <span class='ss'>:navhighlight</span> <span class='o'>=&gt;</span> <span class='s1'>&#39;blog&#39;</span><span class='p'>}</span>
+<span class='k'>end</span>
+</code></pre></div>
+<p>The ultra-simple schema behind Scanty isn’t ideal for this purpose because if you assign multiple tags to a post it’s all stored as just one long string, which is why I need to do all that messing around sorting and splitting arrays. I can’t believe it’s particularly efficient and at some point I probably need to bite the bullet and alter the database. But still, I learned a little about things like the Ruby <a href='http://blog.jayfields.com/2008/03/ruby-inject.html'>inject</a> method and it all appears to work well at the moment - in proper agile fashion it is just enough to do the job.</p>
+        <p class="meta">
+	    
+	      <a href="/past/tags/Ruby">Ruby</a>
+	    
+	      <a href="/past/tags/Scanty_blog">Scanty_blog</a>
+	    
+	    </p>
+	   </div>
+      </div>
+
+     <div id="sidebar">
+
+  <div class="sidebar_section">
+    <div class="sidebar_section_header">
+      <h2>Tags</h2>
+    </div>
+    <div class="sidebar_section_content">
+	  <ul class="taglist">
+	    
+	      <li><a href="/past.html">Products</a><li>
+	    
+	      <li><a href="/past.html">Analysis</a><li>
+	    
+	      <li><a href="/past.html">Ruby</a><li>
+	    
+	      <li><a href="/past.html">Scanty_blog</a><li>
+	    
+	      <li><a href="/past.html">Publishing</a><li>
+	    
+	      <li><a href="/past.html">XML</a><li>
+	    
+	      <li><a href="/past.html">Agile</a><li>
+	    
+	      <li><a href="/past.html">Teams</a><li>
+	    
+	      <li><a href="/past.html">Recruitment</a><li>
+	    
+	      <li><a href="/past.html">Business</a><li>
+	    
+	      <li><a href="/past.html">User-Stories</a><li>
+	    
+	      <li><a href="/past.html">Mobile</a><li>
+	    
+	      <li><a href="/past.html">Design</a><li>
+	    
+	      <li><a href="/past.html">CSS</a><li>
+	    
+	      <li><a href="/past.html">Branding</a><li>
+	    
+	      <li><a href="/past.html">Planning</a><li>
+	    
+	      <li><a href="/past.html">Maths</a><li>
+	    
+	      <li><a href="/past.html">Media</a><li>
+	    
+	  </ul>
+	</div>
+  </div>
+
+  <div class="sidebar_section">
+    <div class="sidebar_section_header">
+      <h2>Archive</h2>
+    </div>
+    <div class="sidebar_section_content">
+	  <a href="/past.html">All blog posts</a>
+	</div>
+  </div>
+
+</div>
+
+
+	
+      <div class="spacer"></div>
+	
+    </div>
+
+	<div id="footer">
+  <h2>About me</h2>
+  <div class="footer_block">I am a London based product development person interested in creating online products using agile methods.</div>
+  <div>
+    <a href="http://twitter.com/#!/stphencornelius" title="Follow me on Twitter" onMousedown="_gaq.push(['_trackEvent', 'Links', 'Twitter']);">
+      <img src="/assets/images/twitter.png"/>
+    </a>
+    <a href="https://plus.google.com/116017560330628192192?rel=author" title="Find me on Google +" onMousedown="_gaq.push(['_trackEvent', 'Links', 'Google +']);"><img src="/assets/images/gPlus_red.png" width="24" height="24"/></a> 
+    <a href="http://www.linkedin.com/profile/view?id=2732644" title="Look me up on LinkedIn" onMousedown="_gaq.push(['_trackEvent', 'Links', 'LinkedIn']);"><img src="/assets/images/linkedin24.png"/></a> 
+    <!--<a href="/feed"><img src="/assets/images/feed24.png" title="Atom feed" onMousedown="_gaq.push(['_trackEvent', 'Links', 'RSS']);"/></a>-->
+  </div>
+</div>
+    
+  
+  </div>
+</body>
+</html>

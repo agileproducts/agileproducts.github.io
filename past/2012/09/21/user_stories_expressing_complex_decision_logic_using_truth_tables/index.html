@@ -1,0 +1,177 @@
+<!doctype html>
+<html>
+<head>
+  <title>AgileProducts | User stories - expressing complex decision logic using truth tables</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta property="description" content="A blog about product development, technology, and etcetera" />  
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" type="text/css" href="/assets/css/basic.css" media="screen, handheld" />
+  <link rel="stylesheet" type="text/css" href="/assets/css/enhanced.css" media="screen and (min-width: 640px)" />
+  <!--[if (lt IE 9)&(!IEMobile)]>
+  <link rel="stylesheet" type="text/css" href="enhanced.css" />
+  <![endif]-->
+  
+  <meta property="og:description" content="A blog about product development, technology, and etcetera" />
+  <meta property="og:image" content="http://blog.agileproducts.com/assets/images/fblogo.png" />
+  
+  <link rel="shortcut icon" href="/favicon.png" />
+  
+</head>
+<body>
+  <div id="page"> 
+	
+	<div id="header">
+  <h1 id="logo"><a href="/">A<span class="a">GILE</span>P<span class="a">RODUCTS</span></a></h1>
+  <h2 id="strapline">Products, Technology, Etcetera</h2>
+</div>   
+    
+    <div id="content">
+	
+      <div id="main">
+	   <div class="post">
+	    <h2>User stories - expressing complex decision logic using truth tables</h2>
+	    <p class="meta">21 September 2012</p>
+        <p><em>Truth tables can be a useful way to express complex decision making logic within the description of an agile user story - but use sparingly.</em></p>
+
+<p>The other day a developer and I were reviewing a story which contained a lot of complicated decision logic. We were struggling to understand it all until the developer reminded me of a tool I had almost forgotten existed - the <a href='http://en.wikipedia.org/wiki/Truth_table'>truth table</a>.</p>
+
+<p>A truth table is a way of describing boolean logic - if X is true and Y is false, then Z is whatever. A familiar application is specifying the behaviour of electronic gates, for example the truth table for an <a href='http://en.wikipedia.org/wiki/And_gate'>AND gate</a> looks like this:</p>
+<table>
+<tr><th>Input 1</th><th>Input 2</th><th>Output</th></tr>
+<tr><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>0</td><td>1</td><td>0</td></tr>
+<tr><td>1</td><td>0</td><td>0</td></tr>
+<tr><td>1</td><td>1</td><td>1</td></tr>
+</table>
+<p>In this case the table captures what happens to the output of the circuit based on the state of two inputs - they both need to be switched on for the output to be switched on.</p>
+
+<p>So how is that useful in a user story? Imagine you’ve got a story for which the acceptance criteria look like this:</p>
+
+<p><strong>Given</strong> <em>that I am not logged in</em><br /> <strong>And</strong> <em>my IP is not recognised as belonging to a customer</em><br /> <strong>When</strong> <em>I look at the welcome message on the homepage</em><br /> <strong>Then</strong> <em>It should say &#8220;Welcome, Guest&#8221;</em></p>
+
+<p><strong>Given</strong> <em>that I am not logged in</em><br /> <strong>And</strong> <em>my IP is recognised as belonging to a customer</em><br /> <strong>When</strong> <em>I look at the welcome message on the homepage</em><br /> <strong>Then</strong> <em>It should say &#8220;Welcome - (Name of Company)&#8221;</em><br /></p>
+
+<p><strong>Given</strong> <em>that I am logged in</em><br /> <strong>And</strong> <em>my IP is not recognised as belonging to a customer</em><br /> <strong>When</strong> <em>I look at the welcome message on the homepage</em><br /> <strong>Then</strong> <em>It should say &#8220;Welcome, (My Name)&#8221;</em></p>
+
+<p><strong>Given</strong> <em>that I am logged in</em><br /> <strong>And</strong> <em>my IP is recognised as belonging to a customer</em><br /> <strong>When</strong> <em>I look at the welcome message on the homepage</em><br /> <strong>Then</strong> <em>It should say &#8220;Welcome, (My Name) - (Name of Company)&#8221;</em></p>
+
+<p>You could also describe that as follows:</p>
+<table>
+<tr><th>Logged in?</th><th>Recognised customer IP?</th><th>Show</th></tr>
+<tr><td>0</td><td>0</td><td> "Welcome, Guest"</td></tr>
+<tr><td>0</td><td>1</td><td> "Welcome - (Name of Company)"</td></tr>
+<tr><td>1</td><td>0</td><td> "Welcome, (My Name)"</td></tr>
+<tr><td>1</td><td>1</td><td> "Welcome, (My Name) - (Name of Company)"</td></tr>
+</table>
+<p>You’re probably thinking that for this facile example that table is complete overkill, and you’d be right. But supposing you have to take account of a third yes/no variable before deciding what to show, for example whether or not you have access to premium content. You’ve now got 8 different <a href='http://www.mathsisfun.com/combinatorics/combinations-permutations.html'>permutations</a> to capture:</p>
+<table>
+<tr><th>Logged in?</th><th>Recognised customer IP?</th><th>Premium access?</th><th>Show</th></tr>
+<tr><td>0</td><td>0</td><td>0</td><td /></tr>
+<tr><td>0</td><td>0</td><td>1</td><td /></tr>
+<tr><td>0</td><td>1</td><td>0</td><td /></tr>
+<tr><td>0</td><td>1</td><td>1</td><td /></tr>
+<tr><td>1</td><td>0</td><td>0</td><td /></tr>
+<tr><td>1</td><td>0</td><td>1</td><td /></tr>
+<tr><td>1</td><td>1</td><td>0</td><td /></tr>
+<tr><td>1</td><td>1</td><td>1</td><td /></tr>
+</table>
+<p>See how that works? The order of the table is crucial, it counts up in binary. The first row says 0 (000), the next 1 (001), then 2 (010), then 3 (011), then 4 (100), 5 (101), 6 (110) and finally 7 (111). That means all your eight combinations are present, you can’t simply forget one, as you might well do in trying to write out the acceptance criteria verbally. In fact that is exactly what was happening with the story the dev and I were working on before we switched to this method.</p>
+
+<p>Now you should still write out the verbal acceptance criteria, something like this is absolutely not a substitute. It also wouldn’t work if the decision points were not binary (e.g the behaviour changed based on what country you are in). But in this case it’s a helpful addition, both in providing a neat summary of complex behaviour and in helping you ensure you find all the different cases you need to cover.</p>
+
+<p>I wouldn’t employ this technique often, but there are situations where it is useful, and I’m glad to have been reminded about it.</p>
+        <p class="meta">
+	    
+	      <a href="/past/tags/User-Stories">User-Stories</a>
+	    
+	      <a href="/past/tags/Agile">Agile</a>
+	    
+	      <a href="/past/tags/Analysis">Analysis</a>
+	    
+	    </p>
+	   </div>
+      </div>
+
+     <div id="sidebar">
+
+  <div class="sidebar_section">
+    <div class="sidebar_section_header">
+      <h2>Tags</h2>
+    </div>
+    <div class="sidebar_section_content">
+	  <ul class="taglist">
+	    
+	      <li><a href="/past.html">Products</a><li>
+	    
+	      <li><a href="/past.html">Analysis</a><li>
+	    
+	      <li><a href="/past.html">Ruby</a><li>
+	    
+	      <li><a href="/past.html">Scanty_blog</a><li>
+	    
+	      <li><a href="/past.html">Publishing</a><li>
+	    
+	      <li><a href="/past.html">XML</a><li>
+	    
+	      <li><a href="/past.html">Agile</a><li>
+	    
+	      <li><a href="/past.html">Teams</a><li>
+	    
+	      <li><a href="/past.html">Recruitment</a><li>
+	    
+	      <li><a href="/past.html">Business</a><li>
+	    
+	      <li><a href="/past.html">User-Stories</a><li>
+	    
+	      <li><a href="/past.html">Mobile</a><li>
+	    
+	      <li><a href="/past.html">Design</a><li>
+	    
+	      <li><a href="/past.html">CSS</a><li>
+	    
+	      <li><a href="/past.html">Branding</a><li>
+	    
+	      <li><a href="/past.html">Planning</a><li>
+	    
+	      <li><a href="/past.html">Maths</a><li>
+	    
+	      <li><a href="/past.html">Media</a><li>
+	    
+	  </ul>
+	</div>
+  </div>
+
+  <div class="sidebar_section">
+    <div class="sidebar_section_header">
+      <h2>Archive</h2>
+    </div>
+    <div class="sidebar_section_content">
+	  <a href="/past.html">All blog posts</a>
+	</div>
+  </div>
+
+</div>
+
+
+	
+      <div class="spacer"></div>
+	
+    </div>
+
+	<div id="footer">
+  <h2>About me</h2>
+  <div class="footer_block">I am a London based product development person interested in creating online products using agile methods.</div>
+  <div>
+    <a href="http://twitter.com/#!/stphencornelius" title="Follow me on Twitter" onMousedown="_gaq.push(['_trackEvent', 'Links', 'Twitter']);">
+      <img src="/assets/images/twitter.png"/>
+    </a>
+    <a href="https://plus.google.com/116017560330628192192?rel=author" title="Find me on Google +" onMousedown="_gaq.push(['_trackEvent', 'Links', 'Google +']);"><img src="/assets/images/gPlus_red.png" width="24" height="24"/></a> 
+    <a href="http://www.linkedin.com/profile/view?id=2732644" title="Look me up on LinkedIn" onMousedown="_gaq.push(['_trackEvent', 'Links', 'LinkedIn']);"><img src="/assets/images/linkedin24.png"/></a> 
+    <!--<a href="/feed"><img src="/assets/images/feed24.png" title="Atom feed" onMousedown="_gaq.push(['_trackEvent', 'Links', 'RSS']);"/></a>-->
+  </div>
+</div>
+    
+  
+  </div>
+</body>
+</html>
