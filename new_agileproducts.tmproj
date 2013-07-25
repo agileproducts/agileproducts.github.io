@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>_layouts/posts.html</string>
+	<string>CNAME</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -21,6 +21,20 @@
 	<integer>266</integer>
 	<key>metaData</key>
 	<dict>
+		<key>CNAME</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>5</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
 		<key>Gemfile</key>
 		<dict>
 			<key>caret</key>
@@ -56,7 +70,7 @@
 				<key>column</key>
 				<integer>35</integer>
 				<key>line</key>
-				<integer>3</integer>
+				<integer>0</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -115,6 +129,20 @@
 				<integer>26</integer>
 				<key>line</key>
 				<integer>33</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>_posts/2012-4-26-hiring_an_agile_business_analyst.md</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>156</integer>
+				<key>line</key>
+				<integer>4</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -209,16 +237,13 @@
 	<key>openDocuments</key>
 	<array>
 		<string>index.html</string>
-		<string>_layouts/default.html</string>
-		<string>_layouts/posts.html</string>
+		<string>CNAME</string>
 		<string>assets/css/basic.css</string>
-		<string>_includes/scripts.html</string>
-		<string>_posts/2013-07-23-moving_to_jekyll.md</string>
 		<string>_config.yml</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{55, 54}, {1057, 824}}</string>
+	<string>{{58, 20}, {1057, 824}}</string>
 </dict>
 </plist>

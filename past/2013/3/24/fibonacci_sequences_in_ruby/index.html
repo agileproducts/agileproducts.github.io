@@ -33,7 +33,7 @@
 	    <p class="meta">24 March 2013</p>
         <p><em>Generating the Fibonacci sequence and testing if a given number is a Fibonacci number in Ruby. Inspired by my attempt at Project Euler problem 2.</em></p>
 
-<p>I’ve been playing around with trying to solve some of the <a href='http://projecteuler.net/'>Project Euler</a> problems in Ruby. <a href='http://projecteuler.net/problem=2'>Problem 2</a>is all about the Fibonacci sequence. I won’t post my exact answer here (plenty of people have) but I did learn some interesting ruby while working on it.</p>
+<p>I’ve been playing around with trying to solve some of the <a href='http://projecteuler.net/'>Project Euler</a> problems in Ruby. <a href='http://projecteuler.net/problem=2'>Problem 2</a> is all about the Fibonacci sequence. I won’t post my exact answer here (plenty of people have) but I did learn some interesting ruby while working on it.</p>
 
 <p>The <a href='http://en.wikipedia.org/wiki/Fibonacci_number'>Fibonacci sequence</a> begins:</p>
 <div class='maths'>
@@ -47,13 +47,12 @@ F<sub>n+1</sub> = F<sub>n</sub> + F<sub>n-1</sub>
 <p>To start you need to seed the sequence with the first two terms 0 and 1.</p>
 
 <p>Here was my first attempt at a function to generate the first n terms:</p>
-<code>
-def fibonacci(n)
-  sequence = [0,1]
-  (1..n-2).each {|x| sequence.push(sequence[x] + sequence[x-1])}
-  sequence
-end
-</code>
+<div class='highlight'><pre><code class='ruby'><span class='k'>def</span> <span class='nf'>fibonacci</span><span class='p'>(</span><span class='n'>n</span><span class='p'>)</span>
+  <span class='n'>sequence</span> <span class='o'>=</span> <span class='o'>[</span><span class='mi'>0</span><span class='p'>,</span><span class='mi'>1</span><span class='o'>]</span>
+  <span class='p'>(</span><span class='mi'>1</span><span class='o'>.</span><span class='n'>.n</span><span class='o'>-</span><span class='mi'>2</span><span class='p'>)</span><span class='o'>.</span><span class='n'>each</span> <span class='p'>{</span><span class='o'>|</span><span class='n'>x</span><span class='o'>|</span> <span class='n'>sequence</span><span class='o'>.</span><span class='n'>push</span><span class='p'>(</span><span class='n'>sequence</span><span class='o'>[</span><span class='n'>x</span><span class='o'>]</span> <span class='o'>+</span> <span class='n'>sequence</span><span class='o'>[</span><span class='n'>x</span><span class='o'>-</span><span class='mi'>1</span><span class='o'>]</span><span class='p'>)}</span>
+  <span class='n'>sequence</span>
+<span class='k'>end</span>
+</code></pre></div>
 <p>I used a variation on this to find the fibonacci terms smaller than 4,000,000 and thus solve Euler problem 2. Having solved it I started to look around to see how else it could be done. The ruby doc for the <a href='http://www.ruby-doc.org/core-1.9.3/Enumerator.html'>Enumerator class</a> gives this more elegant example:</p>
 <div class='highlight'><pre><code class='ruby'><span class='n'>fib</span> <span class='o'>=</span> <span class='no'>Enumerator</span><span class='o'>.</span><span class='n'>new</span> <span class='k'>do</span> <span class='o'>|</span><span class='n'>yielder</span><span class='o'>|</span>
   <span class='n'>a</span> <span class='o'>=</span> <span class='mi'>0</span>
