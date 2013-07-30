@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-  <title>AgileProducts | Ruby and XSLT using Nokogiri</title>
+  <title>AgileProducts | Bitcoins - currency or crackpottery?</title>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <meta property="description" content="A blog about product development, technology, and etcetera" />  
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -29,26 +29,30 @@
 	
       <div id="main">
 	   <div class="post">
-	    <h2>Ruby and XSLT using Nokogiri</h2>
-	    <p class="meta">12 February 2012</p>
-        <p>I may be an old-fashioned kind of guy but for certain types of job I still don’t think there’s an easier way to process XML than using a bit of XSLT. When I googled for a solution I initially encountered some pretty outdated stuff which went too deeply into core Ruby XML libraries. But it turns out to be easy.</p>
+	    <h2>Bitcoins - currency or crackpottery?</h2>
+	    <p class="meta">30 July 2013</p>
+        <p>I&#8217;ve recently been following the story of <a href='http://bitcoin.org/en/'>Bitcoin</a>, the alternative electronic currency. I find it interesting, partly because all the stuff about cryptography and the nature of money reminds me of a <a href='http://www.nealstephenson.com/'>Neal Stephenson</a> novel. However, the more I find out about it, the less I like it.</p>
 
-<p>Using the <a href='http://nokogiri.org/'>Nokogiri</a> gem:</p>
-<div class='highlight'><pre><code class='ruby'><span class='c1'>#!/usr/bin/env ruby</span>
-<span class='c1'># encoding: UTF-8</span>
+<p>So far Bitcoins have been incredibly <a href='https://gold.net/chart/currency/BTCUSD/'>volatile in value</a>, rising from being worth just a few cents to more than $200, then crashing to less than half that. As pointed out by the ever excellent <a href='http://www.npr.org/blogs/money/2013/04/09/176688096/episode-450-bitcoin-goes-to-the-moon'>NPR Planet Money</a> show, you&#8217;d hardly want to pay the rent - or have any sort of contract - in a currency with such a wild exchange rate. In fact at this point it isn&#8217;t really accurate to describe Bitcoin as a currency, it&#8217;s a commodity like gold or shares or tulip bulbs, a thing that you can buy in the hope that it will appreciate in value.</p>
 
-<span class='nb'>require</span> <span class='s1'>&#39;nokogiri&#39;</span>
+<p>Fair enough, if you&#8217;re brave enough to invest your cash in them. But some of the tweets I&#8217;ve seen coming out of today&#8217;s <a href='http://www.mediabistro.com/insidebitcoins/'>Inside Bitcoins Conference</a> betray a more disturbing side to the whole scene. For a start, you&#8217;ve got basic failures of Economics 101 like this:</p>
 
-<span class='n'>doc</span> <span class='o'>=</span> <span class='ss'>Nokogiri</span><span class='p'>:</span><span class='ss'>:XML</span><span class='p'>(</span><span class='no'>File</span><span class='o'>.</span><span class='n'>read</span><span class='p'>(</span><span class='s1'>&#39;myxmlfile.xml&#39;</span><span class='p'>))</span>
-<span class='n'>xslt</span> <span class='o'>=</span> <span class='ss'>Nokogiri</span><span class='p'>:</span><span class='ss'>:XSLT</span><span class='p'>(</span><span class='no'>File</span><span class='o'>.</span><span class='n'>read</span><span class='p'>(</span><span class='s1'>&#39;myxslfile.xsl&#39;</span><span class='p'>))</span>
+<p><img alt='Bitcoin tweet' src='/assets/images/posts/bitcoin1.png' /></p>
 
-<span class='nb'>puts</span> <span class='n'>xslt</span><span class='o'>.</span><span class='n'>transform</span><span class='p'>(</span><span class='n'>doc</span><span class='p'>)</span>
-</code></pre></div>
+<p>Now it&#8217;s true that savings play an important role in economic growth - certainly that&#8217;s what <a href='http://www.bloomberg.com/news/2011-10-07/keynes-and-hayek-s-great-debate-part-2-commentary-by-nicholas-wapshott.html'>Hayek argued</a>. Ordinarily savings can be productively invested, lent to businesses or homeowners, or used to provide share and venture capital. But burying gold bars in your backyard doesn&#8217;t produce any growth, and that&#8217;s what Bitcoin is more akin to. That&#8217;s not saving, it&#8217;s hoarding, something which the inbuilt deflationary bias of Bitcoin strongly encourages.</p>
+
+<p>Then you&#8217;ve got these astonishingly ignorant remarks:</p>
+
+<p><img alt='Bitcoin tweet' src='/assets/images/posts/bitcoin2.png' /></p>
+
+<p>Presumably he&#8217;s referring there to the blocking of donations to Wikileaks by the credit card companies. Talk about first world problems! Jaw-dropping lack of perspective aside, I&#8217;m fairly sure that there are more prosaic things you are unable to spend your money on in the Islamic Republic of Iran, like beer.</p>
+
+<p>I&#8217;m beginning to fear that Bitcoin is primarily designed to appeal to nuts. <a href='http://www.investopedia.com/terms/g/goldbug.asp'>Goldbugs</a>. People who think that inflation is the government&#8217;s way of stealing our money. People who derive their understanding of economics from Fox News. People who think they&#8217;re on The Man&#8217;s ten most wanted list. People who keep machine guns in the garage.</p>
         <p class="meta">
 	    
-	      <a href="/past/tags/Ruby">Ruby</a>
+	      <a href="/past/tags/Economics">Economics</a>
 	    
-	      <a href="/past/tags/XML">XML</a>
+	      <a href="/past/tags/Technology">Technology</a>
 	    
 	    </p>
 	   </div>
