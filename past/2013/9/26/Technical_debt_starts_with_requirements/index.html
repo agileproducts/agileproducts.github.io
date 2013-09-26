@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-  <title>AgileProducts | Fixing the eBook market</title>
+  <title>AgileProducts | Technical debt starts with the requirements</title>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <meta property="description" content="A blog about product development, technology, and etcetera" />  
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -29,24 +29,26 @@
 	
       <div id="main">
 	   <div class="post">
-	    <h2>Fixing the eBook market</h2>
-	    <p class="meta">12 July 2013</p>
-        <p><em>Publishers need to match the quality of Amazon&#8217;s offering if they&#8217;re to challenge their dominance of the eBook market, and will find that a superior product is a more effective way to fight piracy than restrictive DRM.</em></p>
+	    <h2>Technical debt starts with the requirements</h2>
+	    <p class="meta">26 September 2013</p>
+        <p><em>Technical debt often originates in over-complex requirements and the product owners should help the developers by striving for simple solutions and being prepared to refactor or retire features that aren&#8217;t working.</em></p>
 
-<p>There&#8217;s been much <a href='http://econ.st/12G0Xwg'>interesting comment</a> in the press this week about the recent <a href='http://bit.ly/12G1bn3'>court ruling against Apple</a> for &#8216;price fixing&#8217; of eBooks in collusion with major publishers. Amazon sell eBooks via a wholesale model which allows them to sell books to customers at below cost, building market share with ultra-low prices. Apple use an agency model whereby the publishers set the retail price and Apple take a fixed cut of the proceeds. Publishers have been signing exclusive deals with Apple that prevented Amazon from heavy discounting, and as a result eBook prices have risen significantly. The publishers&#8217; chief motive probably isn&#8217;t higher revenue in the short-term so much as the strategic objective of preventing Amazon from owning the market and then being ultimately able to dictate their future.</p>
+<p>It&#8217;s probably inevitable that every project will go through stages where you find yourselves spending a lot of time taking about <a href='http://martinfowler.com/bliki/TechnicalDebt.html'>technical debt</a>, and in our office we&#8217;re in one of those right now. All the usual reasons - we&#8217;re a couple of years into our main product, we took some deliberate shortcuts for commercial reasons, the codebase has gotten bigger, we didn&#8217;t know then what we know now, etcetera.</p>
 
-<p>However, Amazon didn&#8217;t get to where they are today solely through financial bullying. They&#8217;re succeeding like nobody else in this business because they offer a great product. The various types of Kindle are all a joy to use. The shopping experience is first class, and the prices are low. And while you are buying a book which is locked in to a proprietary, protected format it doesn&#8217;t feel like it - Amazon are big enough and stable enough to have defined a standard.</p>
+<p>Most of the work we&#8217;re doing to address the situation is purely technical, but I feel it&#8217;s important to remember that debt is also a problem for the product and that the product team are part of the solution. You often find that the flakiest and most troublesome bits of code are those which were built to support the most complex and confused features, and the tests which fail most often are those around the most peripheral and ill-used features.</p>
 
-<p>Compare with some of the less well-known solutions which the likes of major textbook publishers are trying to employ. I was looking at one the other day. A $123 e-textbook, discounted a whopping $6.99 from the print, $50 more than a second-hand hardcopy from eBay. Requires the installation of a particular version of some strange piece of software from a company you&#8217;ve never heard of. Loads of stupid DRM restrictions like being unable to print more than a handful of successive pages. Not the greatest UI in the world. Some whizzy interactive features that excite the authors and editors a lot more than they engage the readers. And if the vendor ever goes out of business it&#8217;ll all be as much use as a betamax video cassette. I understand the company concerned are making lots of money, but I really don&#8217;t get it myself. If this is the future, the future sucks.</p>
+<p>A period when you&#8217;re focusing on the repayment of tech debt is a great opportunity to review the product, look at what features are and aren&#8217;t earning their place and redesign or kill those that aren&#8217;t. The other day I found a page on one of our sites that was averaging less than 5 visits a month. Do we need that feature? Is that code adding any value? Seems unlikely. Drop the feature and there&#8217;s another bit of build time shaved off.</p>
 
-<p>But then we&#8217;ve been here before. In the late 90s the market for recorded music was blown wide open, initially by illegal mp3 sharing sites such as Napster. The industry responded with the first wave of legal digital sales channels, many of which were fairly terrible, had limited catalogues, restrictive and unreliable DRM, etcetera. Then Apple came along with a fantastic hardware device allied to slick software. They got all the major music publishers into their store, offered products at better value than the physical equivalent (£4 CD singles, where are they now?) and had the muscle to make it the defacto standard. The result was so impressive that it didn&#8217;t just crush the competition from physical sales, it also fought back effectively against the pirates - proving that quality and convenience can even beat &#8216;free&#8217;. Apple&#8217;s fortunes as a company were transformed.</p>
+<p>I think there&#8217;s also an important lesson here when it comes to designing new features. If a story feels tight and logical then the code which drives it will probably end up that way too. If a feature starts to become very complex with lots of conditions and edge cases then it&#8217;s going to be more difficult to implement - more code, more tests, more corners to attract dust.</p>
 
-<p>When you look at the eBook market today, it&#8217;s pretty clear who has the iPod/iTunes combo and who&#8217;s selling via MyCokeMusic. Allowing Amazon to own the eBook industry <a href='http://scholarlykitchen.sspnet.org/2013/07/11/a-disastrous-week-for-publishers-authors-and-readers/'>won&#8217;t be good for publishers</a> and in the long run probably won&#8217;t be good for authors or readers. But publishers won&#8217;t secure their future by retreating into substandard DRM ghettos. They need to emulate the quality and convenience of the experience being offered by Amazon, with some level of discount over the print and the added bonus of device independence via adherence to open standards like ePub. And as Apple proved with music, get the product right and you can afford not to worry so much about the pirates.</p>
+<p>As a general rule of thumb, simple requirements lead to simple code and a better product. Complex requirements aren&#8217;t always avoidable, but they should be challenged to justify themselves.</p>
         <p class="meta">
 	    
-	      <a href="/past/tags/Publishing">Publishing</a>
+	      <a href="/past/tags/Products">Products</a>
 	    
-	      <a href="/past/tags/Business">Business</a>
+	      <a href="/past/tags/Analysis">Analysis</a>
+	    
+	      <a href="/past/tags/User-stories">User-stories</a>
 	    
 	    </p>
 	   </div>
