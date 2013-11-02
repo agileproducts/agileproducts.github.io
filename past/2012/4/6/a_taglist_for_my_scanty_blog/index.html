@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" type="text/css" href="/assets/css/basic.css" media="screen, handheld" />
   <link rel="stylesheet" type="text/css" href="/assets/css/enhanced.css" media="screen and (min-width: 640px)" />
+  <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700' rel='stylesheet' type='text/css'>
   <!--[if (lt IE 9)&(!IEMobile)]>
   <link rel="stylesheet" type="text/css" href="enhanced.css" />
   <![endif]-->
@@ -29,8 +30,7 @@
 	
       <div id="main">
 	   <div class="post">
-	    <h2>A tag-list for my Scanty blog</h2>
-	    <p class="meta">06 April 2012</p>
+	    <h2 class="pagetitle">A tag-list for my Scanty blog</h2>
         <p>One feature I’ve been missing from Scanty is a tag-list or cloud - for me that’s always an easy way to see what a blog site is about. But it wasn’t too difficult to make one. I defined a helper method in Sinatra like this:</p>
 <div class='highlight'><pre><code class='ruby'><span class='c1'>#gets all the tags and returns them as uniqued hash with freq count</span>
 
@@ -75,12 +75,15 @@
 <span class='k'>end</span>
 </code></pre></div>
 <p>The ultra-simple schema behind Scanty isn’t ideal for this purpose because if you assign multiple tags to a post it’s all stored as just one long string, which is why I need to do all that messing around sorting and splitting arrays. I can’t believe it’s particularly efficient and at some point I probably need to bite the bullet and alter the database. But still, I learned a little about things like the Ruby <a href='http://blog.jayfields.com/2008/03/ruby-inject.html'>inject</a> method and it all appears to work well at the moment - in proper agile fashion it is just enough to do the job.</p>
-        <p class="meta">
+	    <p class="meta">
+		06 April 2012<br/>
+	    <ul class="pills">
 	    
-	      <a href="/past/tags/Ruby">Ruby</a>
+	      <li>Ruby</li>
 	    
-	      <a href="/past/tags/Scanty_blog">Scanty_blog</a>
+	      <li>Blogging</li>
 	    
+	    </ul>
 	    </p>
 	   </div>
       </div>
@@ -94,51 +97,37 @@
     <div class="sidebar_section_content">
 	  <ul class="taglist">
 	    
-	      <li><a href="/past.html">Products</a><li>
+	      <li><a href="/past.html">Product development</a><li>
 	    
-	      <li><a href="/past.html">Analysis</a><li>
+	      <li><a href="/past.html">Business analysis</a><li>
 	    
 	      <li><a href="/past.html">Ruby</a><li>
 	    
-	      <li><a href="/past.html">Scanty_blog</a><li>
+	      <li><a href="/past.html">Blogging</a><li>
 	    
-	      <li><a href="/past.html">Publishing</a><li>
+	      <li><a href="/past.html">Analytics</a><li>
 	    
-	      <li><a href="/past.html">XML</a><li>
-	    
-	      <li><a href="/past.html">Agile</a><li>
-	    
-	      <li><a href="/past.html">Teams</a><li>
-	    
-	      <li><a href="/past.html">Recruitment</a><li>
+	      <li><a href="/past.html">Teams and recruitment</a><li>
 	    
 	      <li><a href="/past.html">Business</a><li>
-	    
-	      <li><a href="/past.html">User-Stories</a><li>
 	    
 	      <li><a href="/past.html">Mobile</a><li>
 	    
 	      <li><a href="/past.html">Design</a><li>
 	    
-	      <li><a href="/past.html">CSS</a><li>
+	      <li><a href="/past.html">Marketing</a><li>
 	    
-	      <li><a href="/past.html">Branding</a><li>
+	      <li><a href="/past.html">Agile</a><li>
 	    
-	      <li><a href="/past.html">Planning</a><li>
+	      <li><a href="/past.html">Project management</a><li>
 	    
 	      <li><a href="/past.html">Maths</a><li>
 	    
-	      <li><a href="/past.html">Media</a><li>
+	      <li><a href="/past.html">Publishing</a><li>
 	    
 	      <li><a href="/past.html">Economics</a><li>
 	    
 	      <li><a href="/past.html">Technology</a><li>
-	    
-	      <li><a href="/past.html">Projects</a><li>
-	    
-	      <li><a href="/past.html">Politics</a><li>
-	    
-	      <li><a href="/past.html">User-stories</a><li>
 	    
 	  </ul>
 	</div>

@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" type="text/css" href="/assets/css/basic.css" media="screen, handheld" />
   <link rel="stylesheet" type="text/css" href="/assets/css/enhanced.css" media="screen and (min-width: 640px)" />
+  <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700' rel='stylesheet' type='text/css'>
   <!--[if (lt IE 9)&(!IEMobile)]>
   <link rel="stylesheet" type="text/css" href="enhanced.css" />
   <![endif]-->
@@ -29,8 +30,7 @@
 	
       <div id="main">
 	   <div class="post">
-	    <h2>Designing a site 'mobile first'</h2>
-	    <p class="meta">21 October 2012</p>
+	    <h2 class="pagetitle">Designing a site 'mobile first'</h2>
         <p><em>Designing the front end of a website by starting with the limitations of a small mobile screen and then enhancing up for larger screens turns out to be a simplifying and liberating experience.</em></p>
 
 <p>I’d heard the buzzphrase ‘mobile first’ a few times, not least from the UI guys at work, but I wasn’t sure that designing a website to work on mobile browsers before making it work on desktops was really sensible given that mobile still often constitutes only a small proportion of overall traffic. However the other day I set about making a simple static site for a friend’s business, and I thought it was important that it should work well on a phone. I started with a pretty standard fixed-width template downloaded from the web and then tried retrofitting some basic mobile support to it, but it didn’t feel very satisfactory, much like my initial attempt to mobile-ise this site. So I thought I’d try starting again mobile first.</p>
@@ -54,14 +54,15 @@
 <p>Having arrived at a decent looking phone experience I then turned my attention to what happens when the browser width scrolls out beyond the 640px breakpoint by adding styles to enhanced.css. This was mainly a matter of resorting the different bits of the content into a fluid two-column layout by adding some floats and some max-widths. I wanted to add a decorative image to the full-screen design so I took the easy way out and just hid it in the basic layout - not ideal as it still has to be loaded, but it’ll do for now. I did some similar toggling of the display property for a couple of minor navigational elements on the site and that was about it - the enhanced css file was remarkably short.</p>
 
 <p>When compared to my previous efforts at retrospective mobile optimisation this entire process felt cleaner, simpler and more reliable. But the real thing that surprised me was that it also felt better than designing a regular desktop-optimised site - starting with the small, narrow screen limited my options and concentrated my thought processes, while splitting between ‘basic’ and ‘enhanced’ css seemed to produce better and more logically organised code. I think this will become my default way of working from now on.</p>
-        <p class="meta">
+	    <p class="meta">
+		21 October 2012<br/>
+	    <ul class="pills">
 	    
-	      <a href="/past/tags/Mobile">Mobile</a>
+	      <li>Mobile</li>
 	    
-	      <a href="/past/tags/Design">Design</a>
+	      <li>Design</li>
 	    
-	      <a href="/past/tags/CSS">CSS</a>
-	    
+	    </ul>
 	    </p>
 	   </div>
       </div>
@@ -75,51 +76,37 @@
     <div class="sidebar_section_content">
 	  <ul class="taglist">
 	    
-	      <li><a href="/past.html">Products</a><li>
+	      <li><a href="/past.html">Product development</a><li>
 	    
-	      <li><a href="/past.html">Analysis</a><li>
+	      <li><a href="/past.html">Business analysis</a><li>
 	    
 	      <li><a href="/past.html">Ruby</a><li>
 	    
-	      <li><a href="/past.html">Scanty_blog</a><li>
+	      <li><a href="/past.html">Blogging</a><li>
 	    
-	      <li><a href="/past.html">Publishing</a><li>
+	      <li><a href="/past.html">Analytics</a><li>
 	    
-	      <li><a href="/past.html">XML</a><li>
-	    
-	      <li><a href="/past.html">Agile</a><li>
-	    
-	      <li><a href="/past.html">Teams</a><li>
-	    
-	      <li><a href="/past.html">Recruitment</a><li>
+	      <li><a href="/past.html">Teams and recruitment</a><li>
 	    
 	      <li><a href="/past.html">Business</a><li>
-	    
-	      <li><a href="/past.html">User-Stories</a><li>
 	    
 	      <li><a href="/past.html">Mobile</a><li>
 	    
 	      <li><a href="/past.html">Design</a><li>
 	    
-	      <li><a href="/past.html">CSS</a><li>
+	      <li><a href="/past.html">Marketing</a><li>
 	    
-	      <li><a href="/past.html">Branding</a><li>
+	      <li><a href="/past.html">Agile</a><li>
 	    
-	      <li><a href="/past.html">Planning</a><li>
+	      <li><a href="/past.html">Project management</a><li>
 	    
 	      <li><a href="/past.html">Maths</a><li>
 	    
-	      <li><a href="/past.html">Media</a><li>
+	      <li><a href="/past.html">Publishing</a><li>
 	    
 	      <li><a href="/past.html">Economics</a><li>
 	    
 	      <li><a href="/past.html">Technology</a><li>
-	    
-	      <li><a href="/past.html">Projects</a><li>
-	    
-	      <li><a href="/past.html">Politics</a><li>
-	    
-	      <li><a href="/past.html">User-stories</a><li>
 	    
 	  </ul>
 	</div>

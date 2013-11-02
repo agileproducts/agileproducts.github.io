@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>_posts/2013-09-06-Too_big_to_succeed.md</string>
+	<string>_posts/2013-07-30-bitcoins_currency_or_crackpottery.md</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -182,44 +182,28 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>74</integer>
 				<key>line</key>
-				<integer>0</integer>
+				<integer>7</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>3</integer>
-				<key>line</key>
-				<integer>5</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>0</integer>
-			</dict>
 		</dict>
-		<key>_posts/2013-09-06-Too_big_to_succeed.md</key>
+		<key>_posts/2013-09-26-Technical_debt_starts_with_requirements.md</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>739</integer>
+				<integer>216</integer>
 				<key>line</key>
-				<integer>17</integer>
+				<integer>7</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
-			<integer>367</integer>
+			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>7</integer>
+			<integer>0</integer>
 		</dict>
 		<key>assets/css/basic.css</key>
 		<dict>
@@ -298,13 +282,13 @@
 		<string>CNAME</string>
 		<string>assets/css/basic.css</string>
 		<string>assets/css/typography.css</string>
-		<string>_posts/2013-09-06-Too_big_to_succeed.md</string>
+		<string>_posts/2013-09-26-Technical_debt_starts_with_requirements.md</string>
 		<string>_posts/2013-07-30-bitcoins_currency_or_crackpottery.md</string>
 		<string>_config.yml</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{58, 20}, {1057, 824}}</string>
+	<string>{{65, 24}, {1057, 824}}</string>
 </dict>
 </plist>
