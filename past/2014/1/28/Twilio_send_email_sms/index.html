@@ -1,0 +1,187 @@
+<!doctype html>
+<html>
+<head>
+  <title>AgileProducts | Using Twilio to send emails via an SMS message</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta property="description" content="A blog about product development, technology, and etcetera" />  
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" type="text/css" href="/assets/css/basic.css" media="screen, handheld" />
+  <link rel="stylesheet" type="text/css" href="/assets/css/enhanced.css" media="screen and (min-width: 640px)" />
+  <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700' rel='stylesheet' type='text/css'>
+  <!--[if (lt IE 9)&(!IEMobile)]>
+  <link rel="stylesheet" type="text/css" href="enhanced.css" />
+  <![endif]-->
+  
+  <meta property="og:description" content="A blog about product development, technology, and etcetera" />
+  <meta property="og:image" content="http://blog.agileproducts.com/assets/images/fblogo.png" />
+  
+  <link rel="shortcut icon" href="/favicon.png" />
+  
+</head>
+<body>
+  <div id="page"> 
+	
+	<div id="header">
+  <h1 id="logo"><a href="/">A<span class="a">GILE</span>P<span class="a">RODUCTS</span></a></h1>
+  <h2 id="strapline">Products, Technology, Etcetera</h2>
+</div>   
+    
+    <div id="content">
+	
+      <div id="main">
+	   <div class="post">
+	    <h2 class="pagetitle">Using Twilio to send emails via an SMS message</h2>
+        <p><em>Building myself a secretary</em></p>
+
+<p>The other day I was severely delayed coming into work on the train. Not for the first time I found myself wishing I could use my phone to email to our office mailing group apologising for my tardy appearance. Erm, I know phones can send emails now, right? Well yes, <em>if</em> you have a data plan. But I&#8217;m a cheapskate and run my phone pay-as-you-go, which means that I&#8217;m quite reluctant to switch 3G data on. What I want to do is send an email triggered by a cheap and cheerful SMS message. My provider won&#8217;t let me do that - so I made myself a secretary.</p>
+
+<p><a href='https://www.twilio.com'>Twilio</a> is a cloud service which provide a simple mobile telephony API. You sign up for a phone number which costs $1 a month, and then configure that number so that when it receives a voice call or sms it either gets or posts data about the incoming message as parameters to an endpoint:</p>
+
+<p><img alt='Illustration' src='/assets/images/posts/twilio.png' /></p>
+
+<p>For an SMS message the <a href='https://www.twilio.com/docs/api/twiml/sms/twilio_request'>posted or gotten data</a> includes things like the phone number the message was sent from and the body of the message.</p>
+
+<p>When the endpoint is hit it needs to return response to Twilio telling it what (if anything) to do about the message it has received. This response is in an XML-based format called <a href='http://www.twilio.com/docs/api/twiml'>TwiML</a>. The <a href='https://www.twilio.com/docs/api/twiml/sms/your_response'>response</a> to an incoming SMS sent by Twilio&#8217;s sample default endpoint looks a bit like this:</p>
+<div class='highlight'><pre><code class='ruby'><span class='o'>&lt;</span><span class='p'>?</span><span class='n'>xml</span> <span class='n'>version</span><span class='o'>=</span><span class='s2'>&quot;1.0&quot;</span> <span class='n'>encoding</span><span class='o'>=</span><span class='s2'>&quot;UTF-8&quot;</span><span class='sc'>?&gt;</span>
+<span class='o'>&lt;</span><span class='no'>Response</span><span class='o'>&gt;</span>
+  <span class='o'>&lt;</span><span class='no'>Message</span><span class='o'>&gt;</span><span class='no'>Thanks</span> <span class='k'>for</span> <span class='n'>your</span> <span class='n'>text!</span><span class='o'>&lt;</span><span class='sr'>/Message&gt;</span>
+<span class='sr'>&lt;/</span><span class='no'>Response</span><span class='o'>&gt;</span>
+</code></pre></div>
+<p>Which will make your Twilio number text you back with the contents of the Message element.</p>
+
+<p>In my case I didn&#8217;t want Twilio to respond to my incoming message. I pointed the SMS handler for my number at a simple Sinatra app hosted on Heroku which returned an empty response:</p>
+<div class='highlight'><pre><code class='ruby'><span class='o'>&lt;</span><span class='p'>?</span><span class='n'>xml</span> <span class='n'>version</span><span class='o'>=</span><span class='s2'>&quot;1.0&quot;</span> <span class='n'>encoding</span><span class='o'>=</span><span class='s2'>&quot;UTF-8&quot;</span><span class='sc'>?&gt;</span>
+<span class='o'>&lt;</span><span class='no'>Response</span><span class='o'>&gt;&lt;</span><span class='sr'>/Response&gt;</span>
+</code></pre></div>
+<p>What I <em>did</em> want my Sinatra app to do is send me an email with the contents of the SMS. For this I just hooked up the <a href='https://postmarkapp.com/'>Postmark</a> add-on in Heroku. For my first iteration I just took the &#8216;body&#8217; parameter of the incoming post and emailed the lot to an address that was hardcoded in. But then to make it a bit more flexible I introduced a format which could parse the destination address from the SMS body like thus:</p>
+
+<p><div class='highlight'><pre><code class='ruby'><span class='n'>destination</span><span class='vi'>@mail</span><span class='o'>.</span><span class='n'>com</span><span class='o'>|</span><span class='no'>Here</span><span class='err'>&#39;</span><span class='n'>s</span> <span class='n'>my</span> <span class='n'>message!</span>
+</code></pre></div></p>
+<div class='highlight'><pre><code class='ruby'><span class='n'>text_message</span> <span class='o'>=</span> <span class='n'>params</span><span class='o'>[</span><span class='s2'>&quot;Body&quot;</span><span class='o'>]</span>
+
+<span class='n'>mail_message</span> <span class='o'>=</span> <span class='no'>Mail</span><span class='o'>.</span><span class='n'>new</span> <span class='k'>do</span>
+  <span class='n'>from</span>            <span class='s2'>&quot;registered@fromaddress.com&quot;</span>
+  <span class='n'>to</span>              <span class='n'>text_message</span><span class='o'>.</span><span class='n'>split</span><span class='p'>(</span><span class='s1'>&#39;|&#39;</span><span class='p'>)</span><span class='o'>[</span><span class='mi'>0</span><span class='o'>]</span>
+  <span class='n'>subject</span>         <span class='s2'>&quot;A message from my secretary&quot;</span>
+  <span class='n'>body</span>            <span class='n'>text_message</span><span class='o'>.</span><span class='n'>split</span><span class='p'>(</span><span class='s1'>&#39;|&#39;</span><span class='p'>)</span><span class='o'>[</span><span class='mi'>1</span><span class='o'>]</span>
+
+  <span class='n'>delivery_method</span> <span class='ss'>Mail</span><span class='p'>:</span><span class='ss'>:Postmark</span><span class='p'>,</span> <span class='ss'>:api_key</span> <span class='o'>=&gt;</span> <span class='no'>ENV</span><span class='o'>[</span><span class='s1'>&#39;POSTMARK_API_KEY&#39;</span><span class='o'>]</span>
+<span class='k'>end</span>
+
+<span class='n'>mail_message</span><span class='o'>.</span><span class='n'>deliver</span>
+</code></pre></div>
+<p>I might take this further, adding shortcodes for known email addresses like:</p>
+<div class='highlight'><pre><code class='ruby'><span class='n'>teammail</span><span class='o'>|</span><span class='no'>Sorry</span> <span class='n'>guys</span><span class='p'>,</span> <span class='n'>I</span><span class='err'>&#39;</span><span class='n'>ll</span> <span class='n'>be</span> <span class='n'>late</span> <span class='k'>for</span> <span class='n'>the</span> <span class='n'>meeting</span>
+</code></pre></div>
+<p>Or enable my secretary to do things other than email:</p>
+<div class='highlight'><pre><code class='ruby'><span class='n'>tweet</span><span class='o'>|</span><span class='n'>I</span> <span class='n'>could</span> <span class='nb'>send</span> <span class='n'>tweets</span> <span class='n'>by</span> <span class='no'>SMS</span><span class='o'>!</span>
+</code></pre></div>
+<p>Who knows? At less than $1c to receive an SMS (about $4c to send one) my secretary will be cheaper than 3G data. But of course that&#8217;s not really the point. Being able to develop apps which use the phone network is fun, and while their documentation could use some work Twilio is easy to use and a good place to start.</p>
+	    <p class="meta">
+		28 January 2014<br/>
+	    <ul class="pills">
+	    
+	      <li><a href="/tags/Ruby">Ruby</a></li>
+	    
+	      <li><a href="/tags/Mobile">Mobile</a></li>
+	    
+	    </ul>
+	    </p>
+	   </div>
+      </div>
+
+     <div id="sidebar">
+
+  <div class="sidebar_section">
+    <div class="sidebar_section_header">
+      <h2>Tags</h2>
+    </div>
+    <div class="sidebar_section_content">
+	  <ul class="taglist">
+	    
+	      <li><a href="/tags/Product development">Product development</a><li>
+	    
+	      <li><a href="/tags/Business analysis">Business analysis</a><li>
+	    
+	      <li><a href="/tags/Ruby">Ruby</a><li>
+	    
+	      <li><a href="/tags/Blogging">Blogging</a><li>
+	    
+	      <li><a href="/tags/Analytics">Analytics</a><li>
+	    
+	      <li><a href="/tags/Teams and recruitment">Teams and recruitment</a><li>
+	    
+	      <li><a href="/tags/Business">Business</a><li>
+	    
+	      <li><a href="/tags/Mobile">Mobile</a><li>
+	    
+	      <li><a href="/tags/Design">Design</a><li>
+	    
+	      <li><a href="/tags/Marketing">Marketing</a><li>
+	    
+	      <li><a href="/tags/Agile">Agile</a><li>
+	    
+	      <li><a href="/tags/Project management">Project management</a><li>
+	    
+	      <li><a href="/tags/Maths">Maths</a><li>
+	    
+	      <li><a href="/tags/Publishing">Publishing</a><li>
+	    
+	      <li><a href="/tags/Economics">Economics</a><li>
+	    
+	      <li><a href="/tags/Technology">Technology</a><li>
+	    
+	  </ul>
+	</div>
+  </div>
+
+  <div class="spacer"></div>
+
+  <div class="sidebar_section">
+    <div class="sidebar_section_header">
+      <h2>Archive</h2>
+    </div>
+    <div class="sidebar_section_content">
+	  <a href="/past.html">All blog posts</a>
+	</div>
+  </div>
+
+</div>
+
+
+	
+      <div class="spacer"></div>
+	
+    </div>
+
+	<div id="footer">
+  <h2>About me</h2>
+  <div class="footer_block">I am a London based product development person interested in creating online products using agile methods.</div>
+  <div>
+    <a href="http://twitter.com/#!/stphencornelius" title="Follow me on Twitter" onMousedown="_gaq.push(['_trackEvent', 'Links', 'Twitter']);">
+      <img src="/assets/images/twitter.png"/>
+    </a>
+    <a href="https://plus.google.com/116017560330628192192?rel=author" title="Find me on Google +" onMousedown="_gaq.push(['_trackEvent', 'Links', 'Google +']);"><img src="/assets/images/gPlus_red.png" width="24" height="24"/></a> 
+    <a href="http://www.linkedin.com/profile/view?id=2732644" title="Look me up on LinkedIn" onMousedown="_gaq.push(['_trackEvent', 'Links', 'LinkedIn']);"><img src="/assets/images/linkedin24.png"/></a> 
+    <!--<a href="/feed"><img src="/assets/images/feed24.png" title="Atom feed" onMousedown="_gaq.push(['_trackEvent', 'Links', 'RSS']);"/></a>-->
+  </div>
+</div>
+    
+  
+  </div>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-31544642-1']);
+  _gaq.push(['_setDomainName', 'agileproducts.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>
