@@ -1,17 +1,25 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
 <head>
   <title>AgileProducts | Product development, technology and etcetera</title>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <meta property="description" content="A blog about product development, technology, and etcetera" />  
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" type="text/css" href="/assets/css/basic.css" media="screen, handheld" />
-  <link rel="stylesheet" type="text/css" href="/assets/css/enhanced.css" media="screen and (min-width: 640px)" />
+  <meta property="description" content="A blog about product development, technology, and etcetera" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/skeleton.css">
+  <link rel="stylesheet" href="/assets/css/layout.css">
+  <link rel="stylesheet" href="/assets/css/sc.css">
+
   <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700' rel='stylesheet' type='text/css'>
-  <!--[if (lt IE 9)&(!IEMobile)]>
-  <link rel="stylesheet" type="text/css" href="enhanced.css" />
+
+  <!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
-  
+
   <meta property="og:description" content="A blog about product development, technology, and etcetera" />
   <meta property="og:image" content="http://blog.agileproducts.com/assets/images/fblogo.png" />
   
@@ -19,133 +27,30 @@
   
 </head>
 <body>
-  <div id="page"> 
-	
-	<div id="header">
-  <h1 id="logo"><a href="/">A<span class="a">GILE</span>P<span class="a">RODUCTS</span></a></h1>
-  <h2 id="strapline">Products, Technology, Etcetera</h2>
-</div>   
-    
-    <div id="content">
-	
-      <div id="main">
-        <div class="homepage_block">
+<div class="container">
+		
+  <div class="four columns" id="sidebar">
+   <div>
+  <h1 class="sitename"><a href="/">agileproducts</a></h1>
+  <p class="tagline">An occasional blog about product development, technology and etcetera</p>  
 
+  <div class="mobile_away">
+  <p>by <strong><span itemprop="author" itemtype="http://schema.org/Person">Stephen Cornelius</span></strong></p>
+ 
+  <div>
+    <a href="http://twitter.com/#!/stphencornelius" title="Follow me on Twitter" onMousedown="_gaq.push(['_trackEvent', 'Links', 'Twitter']);"><img src="/assets/images/twitter.png"/></a>
+    <a href="https://plus.google.com/116017560330628192192?rel=author" title="Find me on Google +" onMousedown="_gaq.push(['_trackEvent', 'Links', 'Google +']);"><img src="/assets/images/gPlus_red.png" width="24" height="24"/></a> 
+    <a href="http://www.linkedin.com/profile/view?id=2732644" title="Look me up on LinkedIn" onMousedown="_gaq.push(['_trackEvent', 'Links', 'LinkedIn']);"><img src="/assets/images/linkedin24.png"/></a>
+  </div>
 
-<ul>
-  
-    <li>
-      <h3><a href="/past/2014/1/28/Twilio_send_email_sms">Using Twilio to send emails via an SMS message</a></h3>
-      <div class='summary'>Building myself a secretary</div>
-    </li>
-  
-    <li>
-      <h3><a href="/past/2013/11/6/wine_retail_ab_test">Mum's gone to do an A/B test</a></h3>
-      <div class='summary'>A reality show illustrates a simple and entertaining retail sales experiment.</div>
-    </li>
-  
-    <li>
-      <h3><a href="/past/2013/9/26/Technical_debt_starts_with_requirements">Technical debt starts with the requirements</a></h3>
-      <div class='summary'>Technical debt often originates in over-complex requirements and the product owners should help the developers by striving for simple solutions and being prepared to refactor or retire features that aren't working.</div>
-    </li>
-  
-    <li>
-      <h3><a href="/past/2013/9/6/Too_big_to_succeed">Too big to succeed</a></h3>
-      <div class='summary'>The failure of the government’s ambitious Universal Credit system proves the old truth that the way to succeed at very large IT projects is to avoid doing them.</div>
-    </li>
-  
-    <li>
-      <h3><a href="/past/2013/7/30/bitcoins_currency_or_crackpottery">Bitcoins - currency or crackpottery?</a></h3>
-      <div class='summary'>Bitcoin is an interesting project which shows worrying signs of madness.</div>
-    </li>
-  
-    <li>
-      <h3><a href="/past/2013/7/23/moving_to_jekyll">Moving to Jekyll</a></h3>
-      <div class='summary'>Moving my blog over from Scanty to Jekyll</div>
-    </li>
-  
-    <li>
-      <h3><a href="/past/2013/7/12/fixing-the-ebook-market">Fixing the eBook market</a></h3>
-      <div class='summary'>Publishers need to match the quality of Amazon's offering if they're to challenge their dominance of the eBook market, and will find that a superior product is a more effective way to fight piracy than restrictive DRM.</div>
-    </li>
-  
-    <li>
-      <h3><a href="/past/2013/7/7/zeitgeisters">Zeitgeisters</a></h3>
-      <div class='summary'>A great little Radio 4 series on cultural entrepreneurs and disruptive web businesses.</div>
-    </li>
-  
-    <li>
-      <h3><a href="/past/2013/4/22/calculating_hindexes_using_ruby">Calculating h-indexes using Ruby</a></h3>
-      <div class='summary'>Calculating citation h-indexes using Ruby.</div>
-    </li>
-  
-    <li>
-      <h3><a href="/past/2013/3/24/fibonacci_sequences_in_ruby">Fibonacci sequences in Ruby</a></h3>
-      <div class='summary'>Generating the Fibonacci sequence and testing if a given number is a Fibonacci number in Ruby. Inspired by my attempt at Project Euler problem 2.</div>
-    </li>
-  
-    <li>
-      <h3><a href="/past/2012/12/7/dedicated_points_budgets_for_each_stakeholder_are_a_bad_idea">Dedicated points budgets for each stakeholder are a bad idea</a></h3>
-      <div class='summary'>Having a hypothecated points budget for each stakeholder in a project leads to poor prioritisation and a fragmented delivery.</div>
-    </li>
-  
-    <li>
-      <h3><a href="/past/2012/11/4/mircosofts_image_problem">Microsoft's image problem</a></h3>
-      <div class='summary'>Some thoughts on why the Microsoft brand has become tarnished, and what they might do to fix it.</div>
-    </li>
-  
-    <li>
-      <h3><a href="/past/2012/10/21/designing_a_site_mobile_first">Designing a site 'mobile first'</a></h3>
-      <div class='summary'>Designing the front end of a website by starting with the limitations of a small mobile screen and then enhancing up for larger screens turns out to be a simplifying and liberating experience.</div>
-    </li>
-  
-    <li>
-      <h3><a href="/past/2012/9/21/user_stories_expressing_complex_decision_logic_using_truth_tables">User stories - expressing complex decision logic using truth tables</a></h3>
-      <div class='summary'>Truth tables can be a useful way to express complex decision making logic within the description of an agile user story - but use sparingly.</div>
-    </li>
-  
-    <li>
-      <h3><a href="/past/2012/5/14/digital_entrepreneurship_at_the_imperial_college_festival">Digital Entrepreneurship at the Imperial College Festival</a></h3>
-      <div class='summary'>Some notes from a Q&A on ‘Digital Entrepreneurship’.</div>
-    </li>
-  
-    <li>
-      <h3><a href="/past/2012/4/26/hiring_an_agile_business_analyst">Interview questions for an Agile Business Analyst</a></h3>
-      <div class='summary'>A friend recently asked me if I had any good interview questions for a business analyst position in an agile team, so I thought I’d write about it.</div>
-    </li>
-  
-    <li>
-      <h3><a href="/past/2012/4/6/a_taglist_for_my_scanty_blog">A tag-list for my Scanty blog</a></h3>
-      <div class='summary'>Adding a taglist to the Scanty framework.</div>
-    </li>
-  
-    <li>
-      <h3><a href="/past/2012/2/12/ruby_and_xslt_using_nokogiri">Ruby and XSLT using Nokogiri</a></h3>
-      <div class='summary'>How to apply an XSLT transform using Nokogiri.</div>
-    </li>
-  
-    <li>
-      <h3><a href="/past/2011/10/8/the_google_analytics_api_and_ruby">The Google Analytics API and Ruby</a></h3>
-      <div class='summary'>Mechanically retrieving data from Google Analytics.</div>
-    </li>
-  
-    <li>
-      <h3><a href="/past/2011/10/2/a_scanty_blog">A Scanty blog</a></h3>
-      <div class='summary'>Building a blog using a minimal Ruby framework.</div>
-    </li>
-  
-    <li>
-      <h3><a href="/past/2011/5/1/what_property_ladder_can_teach_us_about_product_development">What Property Ladder can teach us about product development</a></h3>
-      <div class='summary'>Sarah Beeny's TV show contains interesting parallels with the world of software development.</div>
-    </li>
-  
-</ul>
-</div>
-      </div>
+  <div id="sidebar_footer">
+	<div class="small_print">Site built using <a href="http://jekyllrb.com">Jekyll</a>. Design based on <a href="www.getskeleton.com/">Skeleton</a> with inspiration from <a href="http://mdswanson.com/">Matt Swanson</a>.
+	</div>
+  </div>
 
-     <div id="sidebar">
+  </div>
 
-  <div class="sidebar_section">
+<!--  <div class="sidebar_section">
     <div class="sidebar_section_header">
       <h2>Tags</h2>
     </div>
@@ -197,31 +102,71 @@
     <div class="sidebar_section_content">
 	  <a href="/past.html">All blog posts</a>
 	</div>
+  </div> -->
+
+</div>
+
+ 
+  </div>
+
+  <div class="eleven columns" id="content">
+   <h2>Blog posts</h2>
+
+<ul class="frontpage">
+	
+	<li><span class="date mobile_away">28 Jan 2014 - </span><a href="/past/2014/1/28/Twilio_send_email_sms" title="Building myself a secretary">Using Twilio to send emails via an SMS message</a></li>
+    
+	<li><span class="date mobile_away">06 Nov 2013 - </span><a href="/past/2013/11/6/wine_retail_ab_test" title="A reality show illustrates a simple and entertaining retail sales experiment.">Mum's gone to do an A/B test</a></li>
+    
+	<li><span class="date mobile_away">26 Sep 2013 - </span><a href="/past/2013/9/26/Technical_debt_starts_with_requirements" title="Technical debt often originates in over-complex requirements and the product owners should help the developers by striving for simple solutions and being prepared to refactor or retire features that aren't working.">Technical debt starts with the requirements</a></li>
+    
+	<li><span class="date mobile_away">06 Sep 2013 - </span><a href="/past/2013/9/6/Too_big_to_succeed" title="The failure of the government’s ambitious Universal Credit system proves the old truth that the way to succeed at very large IT projects is to avoid doing them.">Too big to succeed</a></li>
+    
+	<li><span class="date mobile_away">30 Jul 2013 - </span><a href="/past/2013/7/30/bitcoins_currency_or_crackpottery" title="Bitcoin is an interesting project which shows worrying signs of madness.">Bitcoins - currency or crackpottery?</a></li>
+    
+	<li><span class="date mobile_away">23 Jul 2013 - </span><a href="/past/2013/7/23/moving_to_jekyll" title="Moving my blog over from Scanty to Jekyll">Moving to Jekyll</a></li>
+    
+	<li><span class="date mobile_away">12 Jul 2013 - </span><a href="/past/2013/7/12/fixing-the-ebook-market" title="Publishers need to match the quality of Amazon's offering if they're to challenge their dominance of the eBook market, and will find that a superior product is a more effective way to fight piracy than restrictive DRM.">Fixing the eBook market</a></li>
+    
+	<li><span class="date mobile_away">07 Jul 2013 - </span><a href="/past/2013/7/7/zeitgeisters" title="A great little Radio 4 series on cultural entrepreneurs and disruptive web businesses.">Zeitgeisters</a></li>
+    
+	<li><span class="date mobile_away">22 Apr 2013 - </span><a href="/past/2013/4/22/calculating_hindexes_using_ruby" title="Calculating citation h-indexes using Ruby.">Calculating h-indexes using Ruby</a></li>
+    
+	<li><span class="date mobile_away">24 Mar 2013 - </span><a href="/past/2013/3/24/fibonacci_sequences_in_ruby" title="Generating the Fibonacci sequence and testing if a given number is a Fibonacci number in Ruby. Inspired by my attempt at Project Euler problem 2.">Fibonacci sequences in Ruby</a></li>
+    
+	<li><span class="date mobile_away">07 Dec 2012 - </span><a href="/past/2012/12/7/dedicated_points_budgets_for_each_stakeholder_are_a_bad_idea" title="Having a hypothecated points budget for each stakeholder in a project leads to poor prioritisation and a fragmented delivery.">Dedicated points budgets for each stakeholder are a bad idea</a></li>
+    
+	<li><span class="date mobile_away">04 Nov 2012 - </span><a href="/past/2012/11/4/mircosofts_image_problem" title="Some thoughts on why the Microsoft brand has become tarnished, and what they might do to fix it.">Microsoft's image problem</a></li>
+    
+	<li><span class="date mobile_away">21 Oct 2012 - </span><a href="/past/2012/10/21/designing_a_site_mobile_first" title="Designing the front end of a website by starting with the limitations of a small mobile screen and then enhancing up for larger screens turns out to be a simplifying and liberating experience.">Designing a site 'mobile first'</a></li>
+    
+	<li><span class="date mobile_away">21 Sep 2012 - </span><a href="/past/2012/9/21/user_stories_expressing_complex_decision_logic_using_truth_tables" title="Truth tables can be a useful way to express complex decision making logic within the description of an agile user story - but use sparingly.">User stories - expressing complex decision logic using truth tables</a></li>
+    
+	<li><span class="date mobile_away">14 May 2012 - </span><a href="/past/2012/5/14/digital_entrepreneurship_at_the_imperial_college_festival" title="Some notes from a Q&A on ‘Digital Entrepreneurship’.">Digital Entrepreneurship at the Imperial College Festival</a></li>
+    
+	<li><span class="date mobile_away">26 Apr 2012 - </span><a href="/past/2012/4/26/hiring_an_agile_business_analyst" title="A friend recently asked me if I had any good interview questions for a business analyst position in an agile team, so I thought I’d write about it.">Interview questions for an Agile Business Analyst</a></li>
+    
+	<li><span class="date mobile_away">06 Apr 2012 - </span><a href="/past/2012/4/6/a_taglist_for_my_scanty_blog" title="Adding a taglist to the Scanty framework.">A tag-list for my Scanty blog</a></li>
+    
+	<li><span class="date mobile_away">12 Feb 2012 - </span><a href="/past/2012/2/12/ruby_and_xslt_using_nokogiri" title="How to apply an XSLT transform using Nokogiri.">Ruby and XSLT using Nokogiri</a></li>
+    
+	<li><span class="date mobile_away">08 Oct 2011 - </span><a href="/past/2011/10/8/the_google_analytics_api_and_ruby" title="Mechanically retrieving data from Google Analytics.">The Google Analytics API and Ruby</a></li>
+    
+	<li><span class="date mobile_away">02 Oct 2011 - </span><a href="/past/2011/10/2/a_scanty_blog" title="Building a blog using a minimal Ruby framework.">A Scanty blog</a></li>
+    
+	<li><span class="date mobile_away">01 May 2011 - </span><a href="/past/2011/5/1/what_property_ladder_can_teach_us_about_product_development" title="Sarah Beeny's TV show contains interesting parallels with the world of software development.">What Property Ladder can teach us about product development</a></li>
+    
+</ul>
+
+
+	
   </div>
 
 </div>
 
-
-	
-      <div class="spacer"></div>
-	
-    </div>
-
-	<div id="footer">
-  <h2>About me</h2>
-  <div class="footer_block">I am a London based product development person interested in creating online products using agile methods.</div>
-  <div>
-    <a href="http://twitter.com/#!/stphencornelius" title="Follow me on Twitter" onMousedown="_gaq.push(['_trackEvent', 'Links', 'Twitter']);">
-      <img src="/assets/images/twitter.png"/>
-    </a>
-    <a href="https://plus.google.com/116017560330628192192?rel=author" title="Find me on Google +" onMousedown="_gaq.push(['_trackEvent', 'Links', 'Google +']);"><img src="/assets/images/gPlus_red.png" width="24" height="24"/></a> 
-    <a href="http://www.linkedin.com/profile/view?id=2732644" title="Look me up on LinkedIn" onMousedown="_gaq.push(['_trackEvent', 'Links', 'LinkedIn']);"><img src="/assets/images/linkedin24.png"/></a> 
-    <!--<a href="/feed"><img src="/assets/images/feed24.png" title="Atom feed" onMousedown="_gaq.push(['_trackEvent', 'Links', 'RSS']);"/></a>-->
-  </div>
-</div>
     
   
-  </div>
+
 <script type="text/javascript">
 
   var _gaq = _gaq || [];

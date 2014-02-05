@@ -1,17 +1,25 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
 <head>
   <title>AgileProducts | Technical debt starts with the requirements</title>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <meta property="description" content="A blog about product development, technology, and etcetera" />  
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" type="text/css" href="/assets/css/basic.css" media="screen, handheld" />
-  <link rel="stylesheet" type="text/css" href="/assets/css/enhanced.css" media="screen and (min-width: 640px)" />
+  <meta property="description" content="A blog about product development, technology, and etcetera" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/skeleton.css">
+  <link rel="stylesheet" href="/assets/css/layout.css">
+  <link rel="stylesheet" href="/assets/css/sc.css">
+
   <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700' rel='stylesheet' type='text/css'>
-  <!--[if (lt IE 9)&(!IEMobile)]>
-  <link rel="stylesheet" type="text/css" href="enhanced.css" />
+
+  <!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
-  
+
   <meta property="og:description" content="A blog about product development, technology, and etcetera" />
   <meta property="og:image" content="http://blog.agileproducts.com/assets/images/fblogo.png" />
   
@@ -19,45 +27,30 @@
   
 </head>
 <body>
-  <div id="page"> 
-	
-	<div id="header">
-  <h1 id="logo"><a href="/">A<span class="a">GILE</span>P<span class="a">RODUCTS</span></a></h1>
-  <h2 id="strapline">Products, Technology, Etcetera</h2>
-</div>   
-    
-    <div id="content">
-	
-      <div id="main">
-	   <div class="post">
-	    <h2 class="pagetitle">Technical debt starts with the requirements</h2>
-        <p><em>Technical debt often originates in over-complex requirements and the product owners should help the developers by striving for simple solutions and being prepared to refactor or retire features that aren&#8217;t working.</em></p>
+<div class="container">
+		
+  <div class="four columns" id="sidebar">
+   <div>
+  <h1 class="sitename"><a href="/">agileproducts</a></h1>
+  <p class="tagline">An occasional blog about product development, technology and etcetera</p>  
 
-<p>It&#8217;s probably inevitable that every project will go through stages where you find yourselves spending a lot of time taking about <a href='http://martinfowler.com/bliki/TechnicalDebt.html'>technical debt</a>, and in our office we&#8217;re in one of those right now. All the usual reasons - we&#8217;re a couple of years into our main product, we took some deliberate shortcuts for commercial reasons, the codebase has gotten bigger, we didn&#8217;t know then what we know now, etcetera.</p>
+  <div class="mobile_away">
+  <p>by <strong><span itemprop="author" itemtype="http://schema.org/Person">Stephen Cornelius</span></strong></p>
+ 
+  <div>
+    <a href="http://twitter.com/#!/stphencornelius" title="Follow me on Twitter" onMousedown="_gaq.push(['_trackEvent', 'Links', 'Twitter']);"><img src="/assets/images/twitter.png"/></a>
+    <a href="https://plus.google.com/116017560330628192192?rel=author" title="Find me on Google +" onMousedown="_gaq.push(['_trackEvent', 'Links', 'Google +']);"><img src="/assets/images/gPlus_red.png" width="24" height="24"/></a> 
+    <a href="http://www.linkedin.com/profile/view?id=2732644" title="Look me up on LinkedIn" onMousedown="_gaq.push(['_trackEvent', 'Links', 'LinkedIn']);"><img src="/assets/images/linkedin24.png"/></a>
+  </div>
 
-<p>Most of the work we&#8217;re doing to address the situation is purely technical, but I feel it&#8217;s important to remember that debt is also a problem for the product and that the product team are part of the solution. You often find that the flakiest and most troublesome bits of code are those which were built to support the most complex and confused features, and the tests which fail most often are those around the most peripheral and ill-used features.</p>
+  <div id="sidebar_footer">
+	<div class="small_print">Site built using <a href="http://jekyllrb.com">Jekyll</a>. Design based on <a href="www.getskeleton.com/">Skeleton</a> with inspiration from <a href="http://mdswanson.com/">Matt Swanson</a>.
+	</div>
+  </div>
 
-<p>A period when you&#8217;re focusing on the repayment of tech debt is a great opportunity to review the product, look at what features are and aren&#8217;t earning their place and redesign or kill those that aren&#8217;t. The other day I found a page on one of our sites that was averaging less than 5 visits a month. Do we need that feature? Is that code adding any value? Seems unlikely. Drop the feature and there&#8217;s another bit of build time shaved off.</p>
+  </div>
 
-<p>I think there&#8217;s also an important lesson here when it comes to designing new features. If a story feels tight and logical then the code which drives it will probably end up that way too. If a feature starts to become very complex with lots of conditions and edge cases then it&#8217;s going to be more difficult to implement - more code, more tests, more corners to attract dust.</p>
-
-<p>As a general rule of thumb, simple requirements lead to simple code and a better product. Complex requirements aren&#8217;t always avoidable, but they should be challenged to justify themselves.</p>
-	    <p class="meta">
-		26 September 2013<br/>
-	    <ul class="pills">
-	    
-	      <li><a href="/tags/Product development">Product development</a></li>
-	    
-	      <li><a href="/tags/Business analysis">Business analysis</a></li>
-	    
-	    </ul>
-	    </p>
-	   </div>
-      </div>
-
-     <div id="sidebar">
-
-  <div class="sidebar_section">
+<!--  <div class="sidebar_section">
     <div class="sidebar_section_header">
       <h2>Tags</h2>
     </div>
@@ -109,31 +102,45 @@
     <div class="sidebar_section_content">
 	  <a href="/past.html">All blog posts</a>
 	</div>
+  </div> -->
+
+</div>
+
+ 
+  </div>
+
+  <div class="eleven columns" id="content">
+	   <div class="post">
+	    <h2 class="pagetitle">Technical debt starts with the requirements</h2>
+       <p><em>Technical debt often originates in over-complex requirements and the product owners should help the developers by striving for simple solutions and being prepared to refactor or retire features that aren&#8217;t working.</em></p>
+
+<p>It&#8217;s probably inevitable that every project will go through stages where you find yourselves spending a lot of time taking about <a href='http://martinfowler.com/bliki/TechnicalDebt.html'>technical debt</a>, and in our office we&#8217;re in one of those right now. All the usual reasons - we&#8217;re a couple of years into our main product, we took some deliberate shortcuts for commercial reasons, the codebase has gotten bigger, we didn&#8217;t know then what we know now, etcetera.</p>
+
+<p>Most of the work we&#8217;re doing to address the situation is purely technical, but I feel it&#8217;s important to remember that debt is also a problem for the product and that the product team are part of the solution. You often find that the flakiest and most troublesome bits of code are those which were built to support the most complex and confused features, and the tests which fail most often are those around the most peripheral and ill-used features.</p>
+
+<p>A period when you&#8217;re focusing on the repayment of tech debt is a great opportunity to review the product, look at what features are and aren&#8217;t earning their place and redesign or kill those that aren&#8217;t. The other day I found a page on one of our sites that was averaging less than 5 visits a month. Do we need that feature? Is that code adding any value? Seems unlikely. Drop the feature and there&#8217;s another bit of build time shaved off.</p>
+
+<p>I think there&#8217;s also an important lesson here when it comes to designing new features. If a story feels tight and logical then the code which drives it will probably end up that way too. If a feature starts to become very complex with lots of conditions and edge cases then it&#8217;s going to be more difficult to implement - more code, more tests, more corners to attract dust.</p>
+
+<p>As a general rule of thumb, simple requirements lead to simple code and a better product. Complex requirements aren&#8217;t always avoidable, but they should be challenged to justify themselves.</p>
+	    <p class="meta">
+		26 September 2013<br/>
+	    <ul class="pills">
+	    
+	      <li><a href="/tags/Product development">Product development</a></li>
+	    
+	      <li><a href="/tags/Business analysis">Business analysis</a></li>
+	    
+	    </ul>
+	    </p>
+	   </div>	
   </div>
 
 </div>
 
-
-	
-      <div class="spacer"></div>
-	
-    </div>
-
-	<div id="footer">
-  <h2>About me</h2>
-  <div class="footer_block">I am a London based product development person interested in creating online products using agile methods.</div>
-  <div>
-    <a href="http://twitter.com/#!/stphencornelius" title="Follow me on Twitter" onMousedown="_gaq.push(['_trackEvent', 'Links', 'Twitter']);">
-      <img src="/assets/images/twitter.png"/>
-    </a>
-    <a href="https://plus.google.com/116017560330628192192?rel=author" title="Find me on Google +" onMousedown="_gaq.push(['_trackEvent', 'Links', 'Google +']);"><img src="/assets/images/gPlus_red.png" width="24" height="24"/></a> 
-    <a href="http://www.linkedin.com/profile/view?id=2732644" title="Look me up on LinkedIn" onMousedown="_gaq.push(['_trackEvent', 'Links', 'LinkedIn']);"><img src="/assets/images/linkedin24.png"/></a> 
-    <!--<a href="/feed"><img src="/assets/images/feed24.png" title="Atom feed" onMousedown="_gaq.push(['_trackEvent', 'Links', 'RSS']);"/></a>-->
-  </div>
-</div>
     
   
-  </div>
+
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
