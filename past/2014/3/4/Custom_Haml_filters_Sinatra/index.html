@@ -110,8 +110,9 @@
   </div>
 
   <div class="eleven columns" id="content">
-	   <div class="post">
+    <div class="post">
 	    <h2 class="pagetitle">Custom Haml filters in a Sinatra application</h2>
+	    <p class="meta">04 March 2014</p>
        <p>I&#8217;ve been working on a little ruby/sinatra application which involves displaying content rendered from quite a complex proprietary XML format. I decided to use <a href='http://haml.info/'>Haml</a> as my templating engine for rendering the views, and added a custom filter to turn the proprietary content into XML. Here&#8217;s how they work.</p>
 
 <p>Haml uses <a href='http://haml.info/docs/yardoc/file.REFERENCE.html#filters'>filters</a> to transform foreign markup in a view. For example:</p>
@@ -157,20 +158,20 @@ consectetur |boldface|adipisicing|end boldface| elit
 </code></pre></div>
 <p>The render method in my actual example used some xslt to transform xml into html, but the principle was the same.</p>
 	    <p class="meta">
-		04 March 2014<br/>
+		   <div class="social_shares">
+		     <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-count="none" data-text="Custom Haml filters in a Sinatra application">Tweet</a>	
+		   </div>
 	    <ul class="pills">
 	    
 	      <li><a href="/tags/Ruby">Ruby</a></li>
 	    
 	    </ul>
 	    </p>
-	   </div>	
+    </div>
   </div>
 
 </div>
 
-    
-  
 
 <script type="text/javascript">
 
@@ -186,5 +187,7 @@ consectetur |boldface|adipisicing|end boldface| elit
   })();
 
 </script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
 </body>
 </html>
