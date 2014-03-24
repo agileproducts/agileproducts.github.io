@@ -110,8 +110,9 @@
   </div>
 
   <div class="eleven columns" id="content">
-	   <div class="post">
+    <div class="post">
 	    <h2 class="pagetitle">Fibonacci sequences in Ruby</h2>
+	    <p class="meta">24 March 2013</p>
        <p><em>Generating the Fibonacci sequence and testing if a given number is a Fibonacci number in Ruby. Inspired by my attempt at Project Euler problem 2.</em></p>
 
 <p>I’ve been playing around with trying to solve some of the <a href='http://projecteuler.net/'>Project Euler</a> problems in Ruby. <a href='http://projecteuler.net/problem=2'>Problem 2</a> is all about the Fibonacci sequence. I won’t post my exact answer here (plenty of people have) but I did learn some interesting ruby while working on it.</p>
@@ -171,7 +172,9 @@ F<sub>n+1</sub> = F<sub>n</sub> + F<sub>n-1</sub>
 </code></pre></div>
 <p>The modular division by 1 looks a bit horrible but a test using the .integer? method doesn’t work because sqrt always returns a float, i.e. 17.0.</p>
 	    <p class="meta">
-		24 March 2013<br/>
+		   <div class="social_shares">
+		     <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-count="none" data-text="Fibonacci sequences in Ruby">Tweet</a>	
+		   </div>
 	    <ul class="pills">
 	    
 	      <li><a href="/tags/Ruby">Ruby</a></li>
@@ -180,13 +183,11 @@ F<sub>n+1</sub> = F<sub>n</sub> + F<sub>n-1</sub>
 	    
 	    </ul>
 	    </p>
-	   </div>	
+    </div>
   </div>
 
 </div>
 
-    
-  
 
 <script type="text/javascript">
 
@@ -202,5 +203,7 @@ F<sub>n+1</sub> = F<sub>n</sub> + F<sub>n-1</sub>
   })();
 
 </script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
 </body>
 </html>

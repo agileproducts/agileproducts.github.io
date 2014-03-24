@@ -110,8 +110,9 @@
   </div>
 
   <div class="eleven columns" id="content">
-	   <div class="post">
+    <div class="post">
 	    <h2 class="pagetitle">The Google Analytics API and Ruby</h2>
+	    <p class="meta">08 October 2011</p>
        <p><em>Getting data from the Google Analytics API using the Garb gem</em></p>
 
 <p>We wanted to get a list of the top 50,000 search terms that resulted in a referral from Google to the main site for the company where I’m currently working. Trying to obtain them via the regular browser interface was painful, so we looked at using the API instead.</p>
@@ -164,7 +165,9 @@
 </code></pre></div>
 <p>The main thing I had to watch for was character encoding, in the case it was important to preserve all the UTF8 encodings in the search terms, many of which weren’t in English. My Windows 7 machine at work gave me lots of trouble here, to no great surprise it wasn’t an issue when I tried using it on my Mac at home.</p>
 	    <p class="meta">
-		08 October 2011<br/>
+		   <div class="social_shares">
+		     <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-count="none" data-text="The Google Analytics API and Ruby">Tweet</a>	
+		   </div>
 	    <ul class="pills">
 	    
 	      <li><a href="/tags/Ruby">Ruby</a></li>
@@ -173,13 +176,11 @@
 	    
 	    </ul>
 	    </p>
-	   </div>	
+    </div>
   </div>
 
 </div>
 
-    
-  
 
 <script type="text/javascript">
 
@@ -195,5 +196,7 @@
   })();
 
 </script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
 </body>
 </html>

@@ -110,8 +110,9 @@
   </div>
 
   <div class="eleven columns" id="content">
-	   <div class="post">
+    <div class="post">
 	    <h2 class="pagetitle">A tag-list for my Scanty blog</h2>
+	    <p class="meta">06 April 2012</p>
        <p>One feature I’ve been missing from Scanty is a tag-list or cloud - for me that’s always an easy way to see what a blog site is about. But it wasn’t too difficult to make one. I defined a helper method in Sinatra like this:</p>
 <div class='highlight'><pre><code class='ruby'><span class='c1'>#gets all the tags and returns them as uniqued hash with freq count</span>
 
@@ -157,7 +158,9 @@
 </code></pre></div>
 <p>The ultra-simple schema behind Scanty isn’t ideal for this purpose because if you assign multiple tags to a post it’s all stored as just one long string, which is why I need to do all that messing around sorting and splitting arrays. I can’t believe it’s particularly efficient and at some point I probably need to bite the bullet and alter the database. But still, I learned a little about things like the Ruby <a href='http://blog.jayfields.com/2008/03/ruby-inject.html'>inject</a> method and it all appears to work well at the moment - in proper agile fashion it is just enough to do the job.</p>
 	    <p class="meta">
-		06 April 2012<br/>
+		   <div class="social_shares">
+		     <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-count="none" data-text="A tag-list for my Scanty blog">Tweet</a>	
+		   </div>
 	    <ul class="pills">
 	    
 	      <li><a href="/tags/Ruby">Ruby</a></li>
@@ -166,13 +169,11 @@
 	    
 	    </ul>
 	    </p>
-	   </div>	
+    </div>
   </div>
 
 </div>
 
-    
-  
 
 <script type="text/javascript">
 
@@ -188,5 +189,7 @@
   })();
 
 </script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
 </body>
 </html>
