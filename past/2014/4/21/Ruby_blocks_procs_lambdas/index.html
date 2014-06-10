@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <title>AgileProducts | Ruby blocks, procs and lambdas</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta property="description" content="A blog about product development, technology, and etcetera" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/skeleton.css">
+  <link rel="stylesheet" href="/assets/css/layout.css">
+  <link rel="stylesheet" href="/assets/css/sc.css">
+
+  <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700' rel='stylesheet' type='text/css'>
+
+  <!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <meta property="og:description" content="A blog about product development, technology, and etcetera" />
+  <meta property="og:image" content="http://blog.agileproducts.com/assets/images/fblogo.png" />
+  
+  <link rel="shortcut icon" href="/favicon.png" />
+  
+</head>
+<body>
+<div class="container">
+		
+  <div class="four columns" id="sidebar">
+   <div>
+  <h1 class="sitename"><a href="/">agileproducts</a></h1>
+  <p class="tagline">An occasional blog about product development, technology and etcetera</p>  
+
+  <div class="mobile_away">
+  <p>by <strong><span itemprop="author" itemtype="http://schema.org/Person">Stephen Cornelius</span></strong></p>
+ 
+  <div>
+    <a href="http://twitter.com/#!/stphencornelius" title="Follow me on Twitter" onMousedown="_gaq.push(['_trackEvent', 'Links', 'Twitter']);"><img src="/assets/images/twitter.png"/></a>
+    <a href="https://plus.google.com/116017560330628192192?rel=author" title="Find me on Google +" onMousedown="_gaq.push(['_trackEvent', 'Links', 'Google +']);"><img src="/assets/images/gPlus_red.png" width="24" height="24"/></a> 
+    <a href="http://www.linkedin.com/profile/view?id=2732644" title="Look me up on LinkedIn" onMousedown="_gaq.push(['_trackEvent', 'Links', 'LinkedIn']);"><img src="/assets/images/linkedin24.png"/></a>
+  </div>
+
+  <div id="sidebar_footer">
+	<div class="small_print">Site built using <a href="http://jekyllrb.com">Jekyll</a>. Design based on <a href="www.getskeleton.com/">Skeleton</a> with inspiration from <a href="http://mdswanson.com/">Matt Swanson</a>.
+	</div>
+  </div>
+
+  </div>
+
+<!--  <div class="sidebar_section">
+    <div class="sidebar_section_header">
+      <h2>Tags</h2>
+    </div>
+    <div class="sidebar_section_content">
+	  <ul class="taglist">
+	    
+	      <li><a href="/tags/Product development">Product development</a><li>
+	    
+	      <li><a href="/tags/Business analysis">Business analysis</a><li>
+	    
+	      <li><a href="/tags/Ruby">Ruby</a><li>
+	    
+	      <li><a href="/tags/Blogging">Blogging</a><li>
+	    
+	      <li><a href="/tags/Analytics">Analytics</a><li>
+	    
+	      <li><a href="/tags/Teams and recruitment">Teams and recruitment</a><li>
+	    
+	      <li><a href="/tags/Business">Business</a><li>
+	    
+	      <li><a href="/tags/Mobile">Mobile</a><li>
+	    
+	      <li><a href="/tags/Design">Design</a><li>
+	    
+	      <li><a href="/tags/Marketing">Marketing</a><li>
+	    
+	      <li><a href="/tags/Agile">Agile</a><li>
+	    
+	      <li><a href="/tags/Project management">Project management</a><li>
+	    
+	      <li><a href="/tags/Maths">Maths</a><li>
+	    
+	      <li><a href="/tags/Publishing">Publishing</a><li>
+	    
+	      <li><a href="/tags/Economics">Economics</a><li>
+	    
+	      <li><a href="/tags/Technology">Technology</a><li>
+	    
+	  </ul>
+	</div>
+  </div>
+
+  <div class="spacer"></div>
+
+  <div class="sidebar_section">
+    <div class="sidebar_section_header">
+      <h2>Archive</h2>
+    </div>
+    <div class="sidebar_section_content">
+	  <a href="/past.html">All blog posts</a>
+	</div>
+  </div> -->
+
+</div>
+
+ 
+  </div>
+
+  <div class="eleven columns" id="content">
+    <div class="post">
+	    <h2 class="pagetitle">Ruby blocks, procs and lambdas</h2>
+	    <p class="meta">21 April 2014</p>
+       <p>A self aide-memoire:</p>
+
+<p>A <strong>block</strong> is an encapsulated bit of code that you can define when calling a method:</p>
+<div class='highlight'><pre><code class='ruby'><span class='k'>def</span> <span class='nf'>calculation</span><span class='p'>(</span><span class='n'>a</span><span class='p'>,</span> <span class='n'>b</span><span class='p'>)</span>
+  <span class='k'>yield</span><span class='p'>(</span><span class='n'>a</span><span class='p'>,</span> <span class='n'>b</span><span class='p'>)</span>
+<span class='k'>end</span>
+
+<span class='nb'>puts</span> <span class='n'>calculation</span><span class='p'>(</span><span class='mi'>5</span><span class='p'>,</span> <span class='mi'>6</span><span class='p'>)</span> <span class='p'>{</span> <span class='o'>|</span><span class='n'>a</span><span class='p'>,</span> <span class='n'>b</span><span class='o'>|</span> <span class='n'>a</span> <span class='o'>+</span> <span class='n'>b</span> <span class='p'>}</span> <span class='c1'># addition</span>
+<span class='nb'>puts</span> <span class='n'>calculation</span><span class='p'>(</span><span class='mi'>5</span><span class='p'>,</span> <span class='mi'>6</span><span class='p'>)</span> <span class='p'>{</span> <span class='o'>|</span><span class='n'>a</span><span class='p'>,</span> <span class='n'>b</span><span class='o'>|</span> <span class='n'>a</span> <span class='o'>-</span> <span class='n'>b</span> <span class='p'>}</span> <span class='c1'># subtraction</span>
+</code></pre></div>
+<p>In this case if the block is not given you&#8217;ll get a LocalJumpError. To guard against this you can use block.given?</p>
+<div class='highlight'><pre><code class='ruby'><span class='k'>def</span> <span class='nf'>foo</span>
+  <span class='k'>if</span> <span class='n'>block</span><span class='o'>.</span><span class='n'>given?</span> <span class='k'>then</span> <span class='k'>yield</span> <span class='k'>end</span>
+<span class='k'>end</span>
+</code></pre></div>
+<p>Unlike almost everything else in Ruby, the block isn&#8217;t an object. If you want to store the block in a variable and run it later on demand you need to turn it into a <strong>Proc</strong> or a <strong>lambda</strong>.</p>
+
+<p>A <strong>Proc</strong> is a block that has been turned into an object:</p>
+<div class='highlight'><pre><code class='ruby'><span class='n'>addition</span> <span class='o'>=</span> <span class='no'>Proc</span><span class='o'>.</span><span class='n'>new</span> <span class='p'>{</span><span class='o'>|</span><span class='n'>a</span><span class='p'>,</span> <span class='n'>b</span><span class='o'>|</span> <span class='k'>return</span> <span class='n'>a</span> <span class='o'>+</span> <span class='n'>b</span> <span class='p'>}</span>
+<span class='nb'>puts</span> <span class='n'>addition</span><span class='o'>.</span><span class='n'>call</span><span class='p'>(</span><span class='mi'>5</span><span class='p'>,</span> <span class='mi'>6</span><span class='p'>)</span>
+</code></pre></div>
+<p>And so is a <strong>lambda</strong>:</p>
+<div class='highlight'><pre><code class='ruby'><span class='n'>addition</span> <span class='o'>=</span> <span class='nb'>lambda</span> <span class='p'>{</span><span class='o'>|</span><span class='n'>a</span><span class='p'>,</span> <span class='n'>b</span><span class='o'>|</span> <span class='k'>return</span> <span class='n'>a</span> <span class='o'>+</span> <span class='n'>b</span> <span class='p'>}</span>
+<span class='nb'>puts</span> <span class='n'>addition</span><span class='o'>.</span><span class='n'>call</span><span class='p'>(</span><span class='mi'>5</span><span class='p'>,</span> <span class='mi'>6</span><span class='p'>)</span>
+</code></pre></div>
+<p>There are two main differences between procs and lambdas. One is that return behaviour is different. If you define a lambda as part of a method is behaves like you&#8217;d expected it to - the lambda returns from itself and the method carries on:</p>
+<div class='highlight'><pre><code class='ruby'><span class='k'>def</span> <span class='nf'>your_opinion</span>
+  <span class='n'>opinion</span> <span class='o'>=</span> <span class='nb'>lambda</span> <span class='p'>{</span> <span class='k'>return</span> <span class='s2'>&quot;I think it&#39;s great&quot;</span> <span class='p'>}</span>
+  <span class='n'>opinion</span><span class='o'>.</span><span class='n'>call</span>
+  <span class='k'>return</span> <span class='s2'>&quot;I don&#39;t care what your block thinks&quot;</span>
+<span class='k'>end</span>
+
+<span class='nb'>p</span> <span class='n'>your_opinion</span> <span class='c1'>#=&gt; &quot;I don&#39;t care what your block thinks&quot;</span>
+</code></pre></div>
+<p>Wheras the proc returns from the entire scope in which it was defined, i.e. it returns out of the whole method:</p>
+<div class='highlight'><pre><code class='ruby'><span class='k'>def</span> <span class='nf'>my_opinion</span>
+  <span class='n'>opinion</span> <span class='o'>=</span> <span class='no'>Proc</span><span class='o'>.</span><span class='n'>new</span> <span class='p'>{</span> <span class='k'>return</span> <span class='s2'>&quot;I think it&#39;s great&quot;</span> <span class='p'>}</span>
+  <span class='n'>opinion</span><span class='o'>.</span><span class='n'>call</span>
+  <span class='k'>return</span> <span class='s2'>&quot;I don&#39;t care what your block thinks&quot;</span>
+<span class='k'>end</span>
+
+<span class='nb'>p</span> <span class='n'>my_opinion</span> <span class='c1'>#=&gt; &quot;I think it&#39;s great&quot;</span>
+</code></pre></div>
+<p>The other important different is in &#8216;arity&#8217; - the way the objects respond to being passed the wrong number of arguments. Proc is quite tolerant of this, whereas lambda will throw an argument error.</p>
+<div class='highlight'><pre><code class='ruby'><span class='n'>make_array</span> <span class='o'>=</span> <span class='no'>Proc</span><span class='o'>.</span><span class='n'>new</span> <span class='p'>{</span><span class='o'>|</span><span class='n'>a</span><span class='p'>,</span><span class='n'>b</span><span class='o'>|</span> <span class='o'>[</span><span class='n'>a</span><span class='p'>,</span><span class='n'>b</span><span class='o'>]</span> <span class='p'>}</span>
+<span class='n'>make_array</span><span class='o'>.</span><span class='n'>call</span><span class='p'>(</span><span class='mi'>1</span><span class='p'>,</span><span class='mi'>2</span><span class='p'>)</span> <span class='c1'>#=&gt; [1,2]</span>
+<span class='n'>make_array</span><span class='o'>.</span><span class='n'>call</span><span class='p'>(</span><span class='mi'>1</span><span class='p'>)</span> <span class='c1'>#=&gt; [1,nil]</span>
+<span class='n'>make_array</span><span class='o'>.</span><span class='n'>call</span><span class='p'>(</span><span class='mi'>1</span><span class='p'>,</span><span class='mi'>2</span><span class='p'>,</span><span class='mi'>3</span><span class='p'>)</span> <span class='c1'>#=&gt; [1,2,3]</span>
+
+<span class='n'>make_array</span> <span class='o'>=</span> <span class='nb'>lambda</span> <span class='p'>{</span><span class='o'>|</span><span class='n'>a</span><span class='p'>,</span><span class='n'>b</span><span class='o'>|</span> <span class='o'>[</span><span class='n'>a</span><span class='p'>,</span><span class='n'>b</span><span class='o'>]</span> <span class='p'>}</span>
+<span class='n'>make_array</span><span class='o'>.</span><span class='n'>call</span><span class='p'>(</span><span class='mi'>1</span><span class='p'>,</span><span class='mi'>2</span><span class='p'>)</span> <span class='c1'>#=&gt; [1,2]</span>
+
+<span class='n'>make_array</span><span class='o'>.</span><span class='n'>call</span><span class='p'>(</span><span class='mi'>1</span><span class='p'>)</span> <span class='c1'>#=&gt; ArgumentError: wrong number of arguments (1 for 2)</span>
+<span class='n'>make_array</span><span class='o'>.</span><span class='n'>call</span><span class='p'>(</span><span class='mi'>1</span><span class='p'>,</span><span class='mi'>2</span><span class='p'>,</span><span class='mi'>3</span><span class='p'>)</span> <span class='c1'>#=&gt; ArgumentError: wrong number of arguments (3 for 2)</span>
+</code></pre></div>
+<p>Generally speaking lambdas are more predictable than procs and are preferred unless you specifically need proc behaviour.</p>
+
+<p>If you want to implicitly pass a block to a method and then turn it into a Proc object or pass it to another method then you&#8217;ll need a handle to reference the block, supplied by the <strong>&amp; operator</strong>.</p>
+<div class='highlight'><pre><code class='ruby'><span class='k'>def</span> <span class='nf'>maths</span><span class='p'>(</span><span class='n'>a</span><span class='p'>,</span> <span class='n'>b</span><span class='p'>)</span>
+  <span class='k'>yield</span><span class='p'>(</span><span class='n'>a</span><span class='p'>,</span> <span class='n'>b</span><span class='p'>)</span>
+<span class='k'>end</span>
+
+<span class='k'>def</span> <span class='nf'>teach_maths</span><span class='p'>(</span><span class='n'>a</span><span class='p'>,</span> <span class='n'>b</span><span class='p'>,</span> <span class='o'>&amp;</span><span class='n'>myblock</span><span class='p'>)</span>
+  <span class='nb'>puts</span> <span class='s2'>&quot;Let&#39;s do some maths&quot;</span>
+  <span class='nb'>puts</span> <span class='n'>maths</span><span class='p'>(</span><span class='n'>a</span><span class='p'>,</span> <span class='n'>b</span><span class='p'>,</span> <span class='o'>&amp;</span><span class='n'>myblock</span><span class='p'>)</span>
+<span class='k'>end</span>
+
+<span class='n'>teach_maths</span><span class='p'>(</span><span class='mi'>2</span><span class='p'>,</span> <span class='mi'>3</span><span class='p'>)</span> <span class='p'>{</span> <span class='o'>|</span><span class='n'>x</span><span class='p'>,</span> <span class='n'>y</span><span class='o'>|</span> <span class='n'>x</span> <span class='o'>*</span> <span class='n'>y</span> <span class='p'>}</span>
+<span class='c1'>#=&gt; Let&#39;s do some maths, 6</span>
+</code></pre></div>
+<p>The passed block referred to without the &#8217;&amp;&#8217; is a Proc:</p>
+<div class='highlight'><pre><code class='ruby'><span class='k'>def</span> <span class='nf'>my_method</span><span class='p'>(</span><span class='o'>&amp;</span><span class='n'>myblock</span><span class='p'>)</span>
+  <span class='nb'>puts</span> <span class='n'>myblock</span><span class='o'>.</span><span class='n'>class</span>
+  <span class='nb'>puts</span> <span class='n'>myblock</span><span class='o'>.</span><span class='n'>call</span>
+<span class='k'>end</span>
+
+<span class='n'>my_method</span> <span class='p'>{</span> <span class='mi'>1</span><span class='o'>+</span><span class='mi'>2</span> <span class='p'>}</span>
+<span class='c1'>#=&gt; Proc, 3</span>
+</code></pre></div>
+<p>To go the other way and turn an explicit callable object into an implicit block:</p>
+<div class='highlight'><pre><code class='ruby'><span class='k'>def</span> <span class='nf'>calculation</span><span class='p'>(</span><span class='n'>a</span><span class='p'>,</span> <span class='n'>b</span><span class='p'>)</span>
+  <span class='k'>yield</span><span class='p'>(</span><span class='n'>a</span><span class='p'>,</span> <span class='n'>b</span><span class='p'>)</span> <span class='c1'># yield calls an implicit (unnamed) block</span>
+<span class='k'>end</span>
+
+<span class='n'>addition</span> <span class='o'>=</span> <span class='nb'>lambda</span> <span class='p'>{</span><span class='o'>|</span><span class='n'>x</span><span class='p'>,</span> <span class='n'>y</span><span class='o'>|</span> <span class='n'>x</span> <span class='o'>+</span> <span class='n'>y</span><span class='p'>}</span>
+<span class='nb'>puts</span> <span class='n'>calculation</span><span class='p'>(</span><span class='mi'>5</span><span class='p'>,</span> <span class='mi'>5</span><span class='p'>,</span> <span class='o'>&amp;</span><span class='n'>addition</span><span class='p'>)</span>
+</code></pre></div>
+<p>Ruby&#8217;s callable objects - blocks, procs and lambdas - are all examples of a closure, because they contain both code and the reference environment of variables etc which the code needs to run.</p>
+<div class='highlight'><pre><code class='ruby'><span class='k'>def</span> <span class='nf'>affair</span>
+  <span class='n'>partner</span> <span class='o'>=</span> <span class='s2'>&quot;wife&quot;</span>
+  <span class='k'>yield</span><span class='p'>(</span><span class='s2'>&quot;book hotel room with&quot;</span><span class='p'>)</span>
+<span class='k'>end</span>
+
+<span class='n'>partner</span> <span class='o'>=</span> <span class='s2'>&quot;girlfriend&quot;</span>
+<span class='n'>affair</span> <span class='p'>{</span> <span class='o'>|</span><span class='n'>y</span><span class='o'>|</span> <span class='s2'>&quot;</span><span class='si'>#{</span><span class='n'>y</span><span class='si'>}</span><span class='s2'> my </span><span class='si'>#{</span><span class='n'>partner</span><span class='si'>}</span><span class='s2'>&quot;</span> <span class='p'>}</span>
+
+<span class='c1'>#=&gt; &quot;book hotel room with my girlfriend&quot;</span>
+</code></pre></div>
+	    <p class="meta">
+		   <div class="social_shares">
+		     <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-count="none" data-text="Ruby blocks, procs and lambdas">Tweet</a>	
+		   </div>
+	    <ul class="pills">
+	    
+	      <li><a href="/tags/Ruby">Ruby</a></li>
+	    
+	    </ul>
+	    </p>
+    </div>
+  </div>
+
+</div>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-31544642-1']);
+  _gaq.push(['_setDomainName', 'agileproducts.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+</body>
+</html>
